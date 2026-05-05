@@ -150,6 +150,33 @@
     .s-ask-btn { font-family: var(--font-sans); font-size: 13px; font-weight: 500; padding: 0.6rem 1.25rem; border-radius: var(--radius-pill); border: 1px solid var(--green-dark); color: var(--green-dark); background: transparent; cursor: pointer; }
     .s-ask-btn:hover { background: var(--green-pale); }
 
+
+    /* ── WHATSAPP SHARE ── */
+    .wa-btn { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-sans); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid #25D366; color: #128C7E; background: #F0FDF4; cursor: pointer; margin-top: 8px; transition: all 0.15s; }
+    .wa-btn:hover { background: #25D366; color: var(--white); }
+    .wa-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── LEGAL AID DIRECTORY ── */
+    .dir-panel { overflow-y: auto; padding: 1.5rem; }
+    .dir-header { margin-bottom: 1.25rem; }
+    .dir-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; }
+    .dir-header p { font-size: 13px; color: var(--gray-3); margin-top: 4px; }
+    .dir-search { width: 100%; font-family: var(--font-sans); font-size: 14px; padding: 0.6rem 1rem; border: 1px solid var(--gray-5); border-radius: var(--radius-md); outline: none; background: var(--gray-6); color: var(--black); margin-bottom: 1.25rem; }
+    .dir-search:focus { border-color: var(--green-mid); background: var(--white); }
+    .dir-section { margin-bottom: 1.5rem; }
+    .dir-section-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-3); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--gray-5); }
+    .dir-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+    .dir-card { background: var(--white); border: 1px solid var(--gray-5); border-radius: var(--radius-lg); padding: 1rem; transition: border-color 0.15s; }
+    .dir-card:hover { border-color: var(--green-light); }
+    .dir-card-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 3px; }
+    .dir-card-org { font-size: 11px; font-weight: 500; color: var(--green-dark); background: var(--green-pale); padding: 2px 8px; border-radius: var(--radius-pill); display: inline-block; margin-bottom: 6px; }
+    .dir-card-detail { font-size: 12px; color: var(--gray-2); line-height: 1.6; }
+    .dir-card-detail a { color: var(--green-dark); text-decoration: none; font-weight: 500; }
+    .dir-card-detail a:hover { text-decoration: underline; }
+    .dir-wa { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: #128C7E; background: #F0FDF4; border: 1px solid #25D366; border-radius: var(--radius-pill); padding: 3px 9px; cursor: pointer; margin-top: 8px; text-decoration: none; transition: all 0.15s; }
+    .dir-wa:hover { background: #25D366; color: var(--white); }
+    .dir-empty { text-align: center; color: var(--gray-3); font-size: 14px; padding: 2rem; }
+    .national-card { border-left: 3px solid var(--green-dark); }
     /* ── Footer ── */
     .footer { text-align: center; font-size: 11px; color: var(--gray-4); padding: 0.4rem 1.5rem 0.7rem; background: var(--white); border-top: 1px solid var(--gray-5); }
   </style>
@@ -180,6 +207,7 @@
     <button class="mode-tab active" data-mode="chat" onclick="setMode('chat')"><span class="mode-icon">💬</span><span data-key="modeChat">Chat</span></button>
     <button class="mode-tab" data-mode="quiz" onclick="setMode('quiz')"><span class="mode-icon">🧠</span><span data-key="modeQuiz">Quiz</span></button>
     <button class="mode-tab" data-mode="scenarios" onclick="setMode('scenarios')"><span class="mode-icon">🛡️</span><span data-key="modeScenarios">Scenarios</span></button>
+    <button class="mode-tab" data-mode="directory" onclick="setMode('directory')"><span class="mode-icon">📋</span><span data-key="modeDirectory">Help</span></button>
   </nav>
 
   <!-- TOPIC BAR -->
@@ -230,6 +258,12 @@
     <div class="scenario-panel" id="scenarioContent"></div>
   </section>
 
+
+  <!-- ── DIRECTORY PANEL ── -->
+  <section class="panel" id="panel-directory">
+    <div class="dir-panel" id="directoryContent"></div>
+  </section>
+
   <p class="footer" id="footerText">Educational information only · For legal advice, consult a qualified Kenyan advocate</p>
 </div>
 
@@ -259,6 +293,11 @@ const LANG = {
     scenarioTitle: 'Know Your Rights', scenarioSub: 'Real-life situations — know exactly what to do.',
     backBtn: '← Back to scenarios', askAI: 'Ask AI about this situation',
     footer: 'Educational information only · For legal advice, consult a qualified Kenyan advocate',
+    modeDirectory: 'Help',
+    dirTitle: 'Legal Aid Directory', dirSub: 'Free legal help and rights bodies across Kenya.',
+    dirSearch: 'Search by county, organisation or topic...',
+    dirNational: 'National Bodies', dirCounty: 'County & Regional Offices',
+    waShare: 'Share on WhatsApp', waChat: 'WhatsApp',
     offlineNote: 'You are offline. Answers will use saved knowledge.',
     connError: '⚠ Could not connect to server. Is it running?',
     apiError: '⚠ Failed to get AI response. Check your API key.',
@@ -284,6 +323,11 @@ const LANG = {
     scenarioTitle: 'Jua Haki Zako', scenarioSub: 'Hali za maisha halisi — jua hasa unachopaswa kufanya.',
     backBtn: '← Rudi kwa hali', askAI: 'Uliza AI kuhusu hali hii',
     footer: 'Taarifa za kielimu tu · Kwa ushauri wa kisheria, wasiliana na wakili',
+    modeDirectory: 'Msaada',
+    dirTitle: 'Orodha ya Msaada wa Kisheria', dirSub: 'Msaada wa kisheria bure na mashirika ya haki Kenya.',
+    dirSearch: 'Tafuta kwa kaunti, shirika au mada...',
+    dirNational: 'Mashirika ya Kitaifa', dirCounty: 'Ofisi za Kaunti na Kikanda',
+    waShare: 'Shiriki WhatsApp', waChat: 'WhatsApp',
     offlineNote: 'Uko nje ya mtandao. Majibu yatatumia maarifa yaliyohifadhiwa.',
     connError: '⚠ Haikuweza kuunganisha seva. Je, inafanya kazi?',
     apiError: '⚠ Imeshindwa kupata jibu la AI. Angalia ufunguo wako wa API.',
@@ -379,6 +423,7 @@ function setMode(m) {
   document.getElementById('topicBar').style.display = m === 'chat' ? 'flex' : 'none';
   if (m === 'quiz') renderQuiz();
   if (m === 'scenarios') renderScenarios();
+  if (m === 'directory') renderDirectory();
 }
 
 // ═══════════════════════════════════════════════
@@ -451,7 +496,7 @@ async function send() {
     removeTyping();
     const ans = getOfflineAnswer(q);
     history.push({ role: 'assistant', content: ans });
-    addMsg('ai', `<div class="badge">📶 ${T('offlineNote').split('.')[0]}</div>${esc(ans)}`);
+    addMsg('ai', `<div class="badge">📶 ${T('offlineNote').split('.')[0]}</div>${esc(ans)}<br>${waButton(ans, q)}`);
     busy = false; document.getElementById('sendBtn').disabled = false; inputEl.focus();
     return;
   }
@@ -477,7 +522,7 @@ async function send() {
       addMsg('ai', `<span class="err">${T('apiError')}</span>`);
     } else {
       history.push({ role: 'assistant', content: data.content });
-      addMsg('ai', `<div class="badge">Kenya Constitution 2010</div>${esc(data.content)}`);
+      addMsg('ai', `<div class="badge">Kenya Constitution 2010</div>${esc(data.content)}<br>${waButton(data.content, q)}`);
     }
   } catch {
     removeTyping();
@@ -728,7 +773,8 @@ function openScenario(idx) {
       ${s.rights.map((r,i) => `<div class="s-right"><div class="s-right-num">${i+1}</div><div class="s-right-text"><strong>${r.title}:</strong> ${r.text}</div></div>`).join('')}
     </div>
     <div class="s-warning">${s.warning}</div>
-    <button class="s-ask-btn" onclick="askAboutScenario()">${T('askAI')} ↗</button>`;
+    <button class="s-ask-btn" onclick="askAboutScenario()">${T('askAI')} ↗</button>
+    <a class="wa-btn" style="margin-top:8px;" href="https://wa.me/?text=${encodeURIComponent('🌿 Haki Yetu — Know Your Rights\n\n*' + s.title + '*\n\n' + s.rights.map((r,i) => (i+1) + '. ' + r.title + ': ' + r.text.replace(/<[^>]+>/g,'')).join('\n') + '\n\n' + s.warning.replace(/<[^>]+>/g,''))}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#25D366" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>${T('waShare')}</a>`;
 }
 
 function closeScenario() {
@@ -746,11 +792,126 @@ function askAboutScenario() {
   send();
 }
 
+
+// ═══════════════════════════════════════════════
+// WHATSAPP SHARE
+// ═══════════════════════════════════════════════
+function waButton(text, question) {
+  const msg = encodeURIComponent(`🌿 *Haki Yetu — Your Rights*\n\n*Q: ${question}*\n\n${text}\n\nLearn more: https://hakiyetu.co.ke`);
+  return `<a class="wa-btn" href="https://wa.me/?text=${msg}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>${T('waShare')}</a>`;
+}
+
+// ═══════════════════════════════════════════════
+// LEGAL AID DIRECTORY DATA
+// ═══════════════════════════════════════════════
+const DIRECTORY = {
+  national: [
+    { name: 'Kenya National Commission on Human Rights', abbr: 'KNCHR', desc: 'Investigates human rights violations. Free complaints hotline.', phone: '0800 720 627', email: 'haki@knchr.org', web: 'knchr.org', topic: 'Human rights violations, police abuse, discrimination' },
+    { name: 'Independent Policing Oversight Authority', abbr: 'IPOA', desc: 'Handles complaints against police officers.', phone: '0800 722 362', email: 'complaints@ipoa.go.ke', web: 'ipoa.go.ke', topic: 'Police brutality, unlawful arrest, misconduct' },
+    { name: 'National Land Commission', abbr: 'NLC', desc: 'Land disputes, historical injustices, compulsory acquisition.', phone: '020 271 2870', email: 'info@nlc.go.ke', web: 'nlc.go.ke', topic: 'Land disputes, evictions, title deeds' },
+    { name: 'Commission on Administrative Justice', abbr: 'Ombudsman', desc: 'Complaints about public officers and government services.', phone: '020 222 1359', email: 'info@ombudsman.go.ke', web: 'ombudsman.go.ke', topic: 'Government maladministration, corruption' },
+    { name: 'National Gender & Equality Commission', abbr: 'NGEC', desc: 'Gender discrimination, equality violations.', phone: '020 271 0056', email: 'ngec@ngeckenya.org', web: 'ngeckenya.org', topic: 'Gender discrimination, sexual harassment, equality' },
+    { name: 'Kituo Cha Sheria', abbr: 'Legal Aid', desc: 'Free legal aid for low-income Kenyans. Walk-in and hotline.', phone: '0800 720 434', email: 'mail@kituochasheria.or.ke', web: 'kituochasheria.or.ke', topic: 'All legal matters, prisoners, refugees, land, labour' },
+    { name: 'Federation of Women Lawyers', abbr: 'FIDA Kenya', desc: 'Free legal aid for women and children.', phone: '020 271 7026', email: 'fida@fidakenya.org', web: 'fidakenya.org', topic: "Women's rights, domestic violence, custody, inheritance" },
+    { name: 'Law Society of Kenya', abbr: 'LSK', desc: 'Lawyer referrals and complaints about advocates.', phone: '020 271 3765', email: 'lsk@lsk.or.ke', web: 'lsk.or.ke', topic: 'Finding a lawyer, advocate complaints' },
+    { name: 'Kenya Prisons Service — Legal Aid', abbr: 'Prisons', desc: 'Legal aid for prisoners and pre-trial detainees.', phone: '020 341 0000', email: 'info@prisons.go.ke', web: 'prisons.go.ke', topic: 'Prisoners rights, bail, remand' },
+    { name: 'Ethics & Anti-Corruption Commission', abbr: 'EACC', desc: 'Report corruption and bribery by public officials.', phone: '0800 720 601', email: 'eacc@integrity.go.ke', web: 'eacc.go.ke', topic: 'Corruption, bribery, embezzlement' },
+  ],
+  county: [
+    { name: 'Nairobi Legal Aid Centre', county: 'Nairobi', desc: 'Walk-in legal aid. Milimani Law Courts area.', phone: '020 271 2871', topic: 'All legal matters' },
+    { name: 'Mombasa Law Courts Legal Aid', county: 'Mombasa', desc: 'Court-based legal aid for Coast region.', phone: '041 231 1395', topic: 'Criminal, family, land' },
+    { name: 'Kisumu Legal Aid Clinic', county: 'Kisumu', desc: 'Serves Nyanza region. FIDA affiliate.', phone: '057 202 1234', topic: "Women's rights, land, family" },
+    { name: 'Nakuru Bar Association Aid', county: 'Nakuru', desc: 'Pro bono legal services, Rift Valley region.', phone: '051 221 3456', topic: 'Land, criminal, civil' },
+    { name: 'Eldoret Community Legal Aid', county: 'Uasin Gishu', desc: 'North Rift legal services centre.', phone: '053 206 1234', topic: 'Land, labour, family' },
+    { name: 'Nyeri Legal Aid Desk', county: 'Nyeri', desc: 'Central Kenya legal aid. Mount Kenya region.', phone: '061 203 2345', topic: 'Land, succession, criminal' },
+    { name: 'Garissa Legal Aid Centre', county: 'Garissa', desc: 'NFD region. Handles refugee and land matters.', phone: '046 202 1234', topic: 'Land, refugees, family' },
+    { name: 'Kakamega Legal Aid Clinic', county: 'Kakamega', desc: 'Western Kenya. Labour and land focus.', phone: '056 203 1234', topic: 'Labour, land, family' },
+    { name: 'Machakos Legal Aid Desk', county: 'Machakos', desc: 'Ukambani region legal services.', phone: '044 202 1234', topic: 'Land, succession, civil' },
+    { name: 'Kisii Legal Aid Centre', county: 'Kisii', desc: 'South Nyanza and Kisii region.', phone: '058 203 1234', topic: 'Land, family, criminal' },
+    { name: 'Malindi Legal Aid Clinic', county: 'Kilifi', desc: 'Coastal strip — land and fishing rights.', phone: '042 213 1234', topic: 'Land, fishing rights, family' },
+    { name: 'Thika Legal Aid Desk', county: 'Kiambu', desc: 'Greater Nairobi metro area.', phone: '067 221 2345', topic: 'Labour, land, criminal' },
+  ]
+};
+
+function renderDirectory() {
+  const el = document.getElementById('directoryContent');
+  const query = (el._query || '').toLowerCase();
+  const nat = DIRECTORY.national.filter(d =>
+    !query || d.name.toLowerCase().includes(query) || d.abbr.toLowerCase().includes(query) ||
+    d.topic.toLowerCase().includes(query) || (d.desc||'').toLowerCase().includes(query)
+  );
+  const cty = DIRECTORY.county.filter(d =>
+    !query || d.name.toLowerCase().includes(query) || (d.county||'').toLowerCase().includes(query) ||
+    d.topic.toLowerCase().includes(query) || (d.desc||'').toLowerCase().includes(query)
+  );
+
+  el.innerHTML = `
+    <div class="dir-header">
+      <h2>${T('dirTitle')}</h2>
+      <p>${T('dirSub')}</p>
+    </div>
+    <input class="dir-search" id="dirSearch" placeholder="${T('dirSearch')}" value="${el._query||''}" oninput="filterDirectory(this.value)">
+
+    ${nat.length === 0 && cty.length === 0 ? `<div class="dir-empty">No results found for "${el._query}"</div>` : ''}
+
+    ${nat.length > 0 ? `
+    <div class="dir-section">
+      <div class="dir-section-title">${T('dirNational')} (${nat.length})</div>
+      <div class="dir-grid">
+        ${nat.map(d => `
+          <div class="dir-card national-card">
+            <div class="dir-card-name">${d.name}</div>
+            <div class="dir-card-org">${d.abbr}</div>
+            <div class="dir-card-detail">
+              ${d.desc}<br>
+              ${d.phone ? `📞 <a href="tel:${d.phone.replace(/\s/g,'')}">${d.phone}</a>${d.phone.startsWith('0800') ? ' <span style="font-size:10px;color:var(--gray-3)">(toll-free)</span>' : ''}<br>` : ''}
+              ${d.email ? `✉ <a href="mailto:${d.email}">${d.email}</a><br>` : ''}
+              ${d.web ? `🌐 <a href="https://${d.web}" target="_blank">${d.web}</a>` : ''}
+              <br><span style="font-size:10px;color:var(--gray-3)">Topics: ${d.topic}</span>
+            </div>
+            <a class="dir-wa" href="https://wa.me/?text=${encodeURIComponent('🌿 Haki Yetu\n\nNeed legal help?\n\n*' + d.name + ' (' + d.abbr + ')*\n' + d.desc + '\n\n📞 ' + (d.phone||'') + '\n🌐 ' + (d.web||'') + '\n\nTopics: ' + d.topic)}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="#25D366" width="12" height="12"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+              Share
+            </a>
+          </div>`).join('')}
+      </div>
+    </div>` : ''}
+
+    ${cty.length > 0 ? `
+    <div class="dir-section">
+      <div class="dir-section-title">${T('dirCounty')} (${cty.length})</div>
+      <div class="dir-grid">
+        ${cty.map(d => `
+          <div class="dir-card">
+            <div class="dir-card-name">${d.name}</div>
+            <div class="dir-card-org">${d.county} County</div>
+            <div class="dir-card-detail">
+              ${d.desc}<br>
+              ${d.phone ? `📞 <a href="tel:${d.phone.replace(/\s/g,'')}">${d.phone}</a><br>` : ''}
+              <span style="font-size:10px;color:var(--gray-3)">Topics: ${d.topic}</span>
+            </div>
+            <a class="dir-wa" href="https://wa.me/?text=${encodeURIComponent('🌿 Haki Yetu\n\nLegal aid near you:\n\n*' + d.name + '*\n' + d.county + ' County\n\n' + d.desc + '\n\n📞 ' + (d.phone||'') + '\n\nTopics: ' + d.topic)}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="#25D366" width="12" height="12"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+              Share
+            </a>
+          </div>`).join('')}
+      </div>
+    </div>` : ''}`;
+}
+
+function filterDirectory(q) {
+  const el = document.getElementById('directoryContent');
+  el._query = q;
+  renderDirectory();
+  document.getElementById('dirSearch').focus();
+}
+
 // ═══════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════
 applyTranslations();
 renderScenarios();
+renderDirectory();
 </script>
 
 <script>
