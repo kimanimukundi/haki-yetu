@@ -850,7 +850,7 @@ function renderDirectory() {
       <h2>${T('dirTitle')}</h2>
       <p>${T('dirSub')}</p>
     </div>
-    <input class="dir-search" id="dirSearch" placeholder="${T('dirSearch')}" value="${el._query||''}" oninput="filterDirectory(this.value)">
+    <input class="dir-search" id="dirSearch" dir="ltr" style="text-align:left;" placeholder="${T('dirSearch')}" value="${el._query||''}" oninput="filterDirectory(this.value)">
 
     ${nat.length === 0 && cty.length === 0 ? `<div class="dir-empty">No results found for "${el._query}"</div>` : ''}
 
