@@ -15,203 +15,217 @@
       --green-pale: #E1F5EE; --green-faint: #9FE1CB;
       --black: #0C0C0C; --gray-1: #1C1C1C; --gray-2: #3A3A3A; --gray-3: #6B6B6B;
       --gray-4: #ADADAD; --gray-5: #E8E8E8; --gray-6: #F5F5F3; --white: #FFFFFF;
-      --red: #C0392B; --red-soft: #FEE8E8;
-      --amber: #B45309; --amber-soft: #FEF3C7;
+      --red: #C0392B; --red-soft: #FEE8E8; --amber: #B45309; --amber-soft: #FEF3C7;
       --blue: #1A56DB; --blue-soft: #E8F0FE;
+      --bg: #FFFFFF; --bg2: #F5F5F3; --bg3: #E8E8E8;
+      --text: #0C0C0C; --text2: #3A3A3A; --text3: #6B6B6B; --text4: #ADADAD;
+      --border: #E8E8E8; --border2: #d0d0d0;
       --font-serif: 'Instrument Serif', Georgia, serif;
       --font-sans: 'DM Sans', system-ui, sans-serif;
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-pill: 100px;
     }
-    html, body { height: 100%; font-family: var(--font-sans); background: var(--gray-6); color: var(--black); -webkit-font-smoothing: antialiased; }
-
-    /* ── Layout ── */
-    .layout { display: grid; grid-template-rows: auto auto auto 1fr auto; height: 100vh; max-width: 900px; margin: 0 auto; background: var(--white); box-shadow: 0 0 0 1px var(--gray-5); }
-
-    /* ── Header ── */
-    .header { display: flex; align-items: center; gap: 12px; padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--gray-5); background: var(--white); }
+    [data-theme="dark"] {
+      --bg: #0F1211; --bg2: #1A1F1E; --bg3: #252B2A;
+      --text: #E8F5F1; --text2: #B0C4BE; --text3: #7A9690; --text4: #4A6660;
+      --border: #2A3533; --border2: #3A4543;
+      --green-pale: #0D2E25; --green-faint: #1A4A3A;
+      --red-soft: #2E1515; --amber-soft: #2E2010; --blue-soft: #0D1528;
+      --gray-1: #E0EDE9; --gray-2: #B0C4BE; --gray-3: #7A9690; --gray-4: #4A6660;
+      --gray-5: #2A3533; --gray-6: #1A1F1E; --white: #0F1211; --black: #E8F5F1;
+    }
+    html, body { height: 100%; font-family: var(--font-sans); background: var(--bg2); color: var(--text); -webkit-font-smoothing: antialiased; }
+    .layout { display: grid; grid-template-rows: auto auto auto 1fr auto; height: 100vh; max-width: 900px; margin: 0 auto; background: var(--bg); box-shadow: 0 0 0 1px var(--border); }
+    .header { display: flex; align-items: center; gap: 12px; padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--bg); }
     .logo { width: 38px; height: 38px; background: var(--green-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .logo svg { width: 21px; height: 21px; }
-    .header-text h1 { font-family: var(--font-serif); font-size: 17px; font-weight: 400; color: var(--black); line-height: 1.2; }
-    .header-text p { font-size: 11px; color: var(--gray-3); margin-top: 1px; }
+    .header-text h1 { font-family: var(--font-serif); font-size: 17px; font-weight: 400; color: var(--text); line-height: 1.2; }
+    .header-text p { font-size: 11px; color: var(--text3); margin-top: 1px; }
     .header-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-
-    /* offline badge */
     .offline-badge { display: none; font-size: 10px; font-weight: 500; padding: 3px 8px; border-radius: var(--radius-pill); background: var(--amber-soft); color: var(--amber); }
     body.offline .offline-badge { display: inline-block; }
-
-    /* lang toggle */
-    .lang-toggle { display: flex; border: 1px solid var(--gray-5); border-radius: var(--radius-pill); overflow: hidden; }
-    .lang-btn { font-family: var(--font-sans); font-size: 11px; font-weight: 500; padding: 4px 10px; border: none; background: transparent; color: var(--gray-3); cursor: pointer; transition: all 0.15s; }
-    .lang-btn.active { background: var(--green-dark); color: var(--white); }
-
-    /* ── Mode tabs ── */
-    .mode-bar { display: flex; gap: 0; border-bottom: 1px solid var(--gray-5); background: var(--white); }
-    .mode-tab { flex: 1; font-family: var(--font-sans); font-size: 12px; font-weight: 500; padding: 0.6rem 0.5rem; border: none; background: transparent; color: var(--gray-3); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 5px; }
+    .icon-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg2); color: var(--text3); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; }
+    .icon-btn:hover { background: var(--bg3); }
+    .lang-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius-pill); overflow: hidden; }
+    .lang-btn { font-family: var(--font-sans); font-size: 11px; font-weight: 500; padding: 4px 10px; border: none; background: transparent; color: var(--text3); cursor: pointer; transition: all 0.15s; }
+    .lang-btn.active { background: var(--green-dark); color: #E1F5EE; }
+    .mode-bar { display: flex; border-bottom: 1px solid var(--border); background: var(--bg); overflow-x: auto; scrollbar-width: none; }
+    .mode-bar::-webkit-scrollbar { display: none; }
+    .mode-tab { flex: 1; min-width: 70px; font-family: var(--font-sans); font-size: 11px; font-weight: 500; padding: 0.55rem 0.4rem; border: none; background: transparent; color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
     .mode-tab:hover { color: var(--green-dark); }
     .mode-tab.active { color: var(--green-dark); border-bottom-color: var(--green-dark); }
-    .mode-icon { font-size: 14px; }
-
-    /* ── Topic bar ── */
-    .topic-bar { display: flex; gap: 8px; padding: 0.6rem 1.5rem; overflow-x: auto; border-bottom: 1px solid var(--gray-5); scrollbar-width: none; background: var(--white); }
+    .mode-icon { font-size: 13px; }
+    .topic-bar { display: flex; gap: 8px; padding: 0.6rem 1.5rem; overflow-x: auto; border-bottom: 1px solid var(--border); scrollbar-width: none; background: var(--bg); }
     .topic-bar::-webkit-scrollbar { display: none; }
-    .chip { flex-shrink: 0; font-family: var(--font-sans); font-size: 12px; font-weight: 500; padding: 4px 13px; border-radius: var(--radius-pill); border: 1px solid var(--gray-5); background: var(--gray-6); color: var(--gray-3); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+    .chip { flex-shrink: 0; font-family: var(--font-sans); font-size: 12px; font-weight: 500; padding: 4px 13px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg2); color: var(--text3); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
     .chip:hover { border-color: var(--green-light); color: var(--green-dark); }
-    .chip.active { background: var(--green-dark); color: var(--green-pale); border-color: var(--green-dark); }
-
-    /* ── Panels ── */
+    .chip.active { background: var(--green-dark); color: #E1F5EE; border-color: var(--green-dark); }
     .panel { display: none; flex-direction: column; overflow: hidden; }
     .panel.active { display: flex; }
-
-    /* ── CHAT ── */
+    .rotd { margin: 1rem 1.5rem 0; background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%); border-radius: var(--radius-lg); padding: 1rem 1.2rem; color: #E1F5EE; position: relative; overflow: hidden; }
+    .rotd::before { content: ''; position: absolute; right: -20px; top: -20px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+    .rotd-label { font-size: 10px; font-weight: 500; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .rotd-article { font-size: 11px; font-weight: 500; opacity: 0.8; margin-bottom: 3px; }
+    .rotd-text { font-size: 14px; line-height: 1.55; }
+    .rotd-ask { margin-top: 10px; font-family: var(--font-sans); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid rgba(255,255,255,0.35); color: #E1F5EE; background: transparent; cursor: pointer; transition: all 0.15s; }
+    .rotd-ask:hover { background: rgba(255,255,255,0.15); }
     .chat { overflow-y: auto; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1.1rem; scroll-behavior: smooth; }
     .msg { display: flex; gap: 10px; align-items: flex-start; }
     .msg.user { flex-direction: row-reverse; }
     .avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; }
-    .avatar.ai { background: var(--green-dark); color: var(--green-pale); }
+    .avatar.ai { background: var(--green-dark); color: #E1F5EE; }
     .avatar.me { background: var(--blue-soft); color: var(--blue); }
     .bubble { max-width: 76%; padding: 0.7rem 1rem; border-radius: var(--radius-lg); font-size: 14px; line-height: 1.65; }
-    .msg.ai .bubble { background: var(--gray-6); border: 1px solid var(--gray-5); border-top-left-radius: 4px; color: var(--gray-1); }
-    .msg.user .bubble { background: var(--green-dark); color: var(--green-pale); border-top-right-radius: 4px; }
+    .msg.ai .bubble { background: var(--bg2); border: 1px solid var(--border); border-top-left-radius: 4px; color: var(--text); }
+    .msg.user .bubble { background: var(--green-dark); color: #E1F5EE; border-top-right-radius: 4px; }
     .badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--green-pale); color: var(--green-dark); margin-bottom: 6px; }
     .sugs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
     .sug { font-family: var(--font-sans); font-size: 12px; padding: 4px 11px; border-radius: var(--radius-pill); border: 1px solid var(--green-light); color: var(--green-dark); background: var(--green-pale); cursor: pointer; transition: all 0.15s; }
-    .sug:hover { background: var(--green-light); color: var(--white); }
+    .sug:hover { background: var(--green-light); color: #fff; }
     .typing { display: flex; gap: 5px; align-items: center; padding: 10px 14px; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-mid); animation: bop 1.1s infinite ease-in-out; }
-    .dot:nth-child(2) { animation-delay: 0.18s; }
-    .dot:nth-child(3) { animation-delay: 0.36s; }
+    .dot:nth-child(2) { animation-delay: 0.18s; } .dot:nth-child(3) { animation-delay: 0.36s; }
     @keyframes bop { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
-    .input-wrap { border-top: 1px solid var(--gray-5); padding: 0.9rem 1.5rem; display: flex; gap: 10px; align-items: flex-end; background: var(--white); }
-    textarea { flex: 1; font-family: var(--font-sans); font-size: 14px; color: var(--black); background: var(--gray-6); border: 1px solid var(--gray-5); border-radius: var(--radius-md); padding: 0.6rem 1rem; resize: none; outline: none; line-height: 1.5; min-height: 40px; max-height: 120px; transition: border-color 0.15s; }
-    textarea:focus { border-color: var(--green-mid); background: var(--white); }
-    textarea::placeholder { color: var(--gray-4); }
+    .input-wrap { border-top: 1px solid var(--border); padding: 0.9rem 1.5rem; display: flex; gap: 10px; align-items: flex-end; background: var(--bg); }
+    textarea { flex: 1; font-family: var(--font-sans); font-size: 14px; color: var(--text); background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.6rem 1rem; resize: none; outline: none; line-height: 1.5; min-height: 40px; max-height: 120px; transition: border-color 0.15s; }
+    textarea:focus { border-color: var(--green-mid); background: var(--bg); }
+    textarea::placeholder { color: var(--text4); }
     .send { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--green-dark); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s, transform 0.1s; }
-    .send:hover { background: var(--green-mid); }
-    .send:active { transform: scale(0.96); }
+    .send:hover { background: var(--green-mid); } .send:active { transform: scale(0.96); }
     .send:disabled { background: var(--gray-5); cursor: not-allowed; }
     .err { color: var(--red); font-size: 13px; }
-
-    /* ── QUIZ ── */
+    .wa-btn { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-sans); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid #25D366; color: #128C7E; background: #F0FDF4; cursor: pointer; margin-top: 8px; text-decoration: none; transition: all 0.15s; }
+    .wa-btn:hover { background: #25D366; color: #fff; }
+    .wa-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
     .quiz-panel { overflow-y: auto; padding: 1.5rem; }
     .quiz-header { margin-bottom: 1.25rem; }
-    .quiz-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; color: var(--black); }
-    .quiz-header p { font-size: 13px; color: var(--gray-3); margin-top: 4px; }
-    .progress-bar { height: 4px; background: var(--gray-5); border-radius: 2px; margin: 1rem 0; }
+    .quiz-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; color: var(--text); }
+    .quiz-header p { font-size: 13px; color: var(--text3); margin-top: 4px; }
+    .topic-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .tf-btn { font-family: var(--font-sans); font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg2); color: var(--text3); cursor: pointer; transition: all 0.15s; }
+    .tf-btn:hover { border-color: var(--green-light); color: var(--green-dark); }
+    .tf-btn.active { background: var(--green-dark); color: #E1F5EE; border-color: var(--green-dark); }
+    .progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin: 1rem 0; }
     .progress-fill { height: 100%; background: var(--green-dark); border-radius: 2px; transition: width 0.4s; }
-    .q-card { background: var(--gray-6); border: 1px solid var(--gray-5); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
-    .q-text { font-size: 15px; font-weight: 500; color: var(--black); line-height: 1.5; margin-bottom: 1rem; }
-    .q-article { font-size: 11px; color: var(--gray-3); margin-bottom: 8px; }
+    .q-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+    .q-text { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 1rem; }
+    .q-article { font-size: 11px; color: var(--text3); margin-bottom: 8px; }
     .options { display: flex; flex-direction: column; gap: 8px; }
-    .opt { font-family: var(--font-sans); font-size: 14px; padding: 0.65rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--gray-5); background: var(--white); color: var(--gray-1); cursor: pointer; text-align: left; transition: all 0.15s; }
+    .opt { font-family: var(--font-sans); font-size: 14px; padding: 0.65rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; text-align: left; transition: all 0.15s; }
     .opt:hover:not(:disabled) { border-color: var(--green-light); color: var(--green-dark); }
     .opt.correct { background: var(--green-pale); border-color: var(--green-dark); color: var(--green-dark); }
     .opt.wrong { background: var(--red-soft); border-color: var(--red); color: var(--red); }
     .opt:disabled { cursor: default; }
-    .q-explain { font-size: 13px; color: var(--gray-2); background: var(--white); border: 1px solid var(--gray-5); border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-top: 10px; line-height: 1.6; display: none; }
+    .q-explain { font-size: 13px; color: var(--text2); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-top: 10px; line-height: 1.6; display: none; }
     .q-explain.show { display: block; }
     .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
-    .quiz-score { font-size: 13px; color: var(--gray-3); }
-    .btn-next { font-family: var(--font-sans); font-size: 13px; font-weight: 500; padding: 0.55rem 1.25rem; border-radius: var(--radius-pill); border: none; background: var(--green-dark); color: var(--white); cursor: pointer; transition: background 0.15s; display: none; }
-    .btn-next:hover { background: var(--green-mid); }
+    .btn-next { font-family: var(--font-sans); font-size: 13px; font-weight: 500; padding: 0.55rem 1.25rem; border-radius: var(--radius-pill); border: none; background: var(--green-dark); color: #E1F5EE; cursor: pointer; display: none; }
     .btn-next.show { display: inline-block; }
     .quiz-result { text-align: center; padding: 2rem 1rem; }
     .quiz-result .big { font-family: var(--font-serif); font-size: 48px; color: var(--green-dark); }
-    .quiz-result h3 { font-size: 18px; font-weight: 500; margin: 0.5rem 0; }
-    .quiz-result p { font-size: 14px; color: var(--gray-3); }
+    .quiz-result h3 { font-size: 18px; font-weight: 500; color: var(--text); margin: 0.5rem 0; }
+    .quiz-result p { font-size: 14px; color: var(--text3); }
     .btn-restart { margin-top: 1.5rem; font-family: var(--font-sans); font-size: 13px; font-weight: 500; padding: 0.6rem 1.5rem; border-radius: var(--radius-pill); border: 1px solid var(--green-dark); color: var(--green-dark); background: transparent; cursor: pointer; }
-    .btn-restart:hover { background: var(--green-pale); }
-
-    /* ── SCENARIOS ── */
     .scenario-panel { overflow-y: auto; padding: 1.5rem; }
     .scenario-header { margin-bottom: 1.25rem; }
-    .scenario-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; }
-    .scenario-header p { font-size: 13px; color: var(--gray-3); margin-top: 4px; }
+    .scenario-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; color: var(--text); }
+    .scenario-header p { font-size: 13px; color: var(--text3); margin-top: 4px; }
     .scenario-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-    .s-card { border: 1px solid var(--gray-5); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; transition: border-color 0.15s, transform 0.1s; background: var(--white); }
+    .s-card { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; transition: border-color 0.15s, transform 0.1s; background: var(--bg); }
     .s-card:hover { border-color: var(--green-light); transform: translateY(-1px); }
     .s-card-top { padding: 1rem 1.1rem 0.75rem; }
     .s-icon { font-size: 22px; margin-bottom: 8px; }
-    .s-title { font-size: 14px; font-weight: 500; color: var(--black); line-height: 1.4; }
+    .s-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; }
     .s-tag { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--green-pale); color: var(--green-dark); margin-top: 6px; display: inline-block; }
-    .s-card-bottom { padding: 0.6rem 1.1rem; background: var(--gray-6); border-top: 1px solid var(--gray-5); font-size: 12px; color: var(--gray-3); }
-
-    /* scenario detail */
+    .s-card-bottom { padding: 0.6rem 1.1rem; background: var(--bg2); border-top: 1px solid var(--border); font-size: 12px; color: var(--text3); }
     .s-detail { display: none; }
     .s-detail.open { display: block; }
-    .s-detail-back { font-family: var(--font-sans); font-size: 13px; color: var(--green-dark); background: none; border: none; cursor: pointer; padding: 0; margin-bottom: 1rem; display: flex; align-items: center; gap: 4px; }
-    .s-scene { background: var(--gray-6); border: 1px solid var(--gray-5); border-radius: var(--radius-lg); padding: 1.1rem; margin-bottom: 1rem; font-size: 14px; line-height: 1.7; color: var(--gray-1); }
-    .s-scene strong { color: var(--black); }
+    .s-detail-back { font-family: var(--font-sans); font-size: 13px; color: var(--green-dark); background: none; border: none; cursor: pointer; padding: 0; margin-bottom: 1rem; }
+    .s-scene { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.1rem; margin-bottom: 1rem; font-size: 14px; line-height: 1.7; color: var(--text2); }
     .s-rights { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
     .s-right { display: flex; gap: 10px; align-items: flex-start; padding: 0.75rem 1rem; border-radius: var(--radius-md); background: var(--green-pale); border: 1px solid var(--green-faint); }
-    .s-right-num { font-size: 11px; font-weight: 500; color: var(--green-dark); background: var(--white); border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .s-right-num { font-size: 11px; font-weight: 500; color: var(--green-dark); background: var(--bg); border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
     .s-right-text { font-size: 13px; color: var(--green-dark); line-height: 1.5; }
-    .s-right-text strong { color: var(--black); }
     .s-warning { background: var(--amber-soft); border: 1px solid #FCD34D; border-radius: var(--radius-md); padding: 0.75rem 1rem; font-size: 13px; color: var(--amber); line-height: 1.5; margin-bottom: 1rem; }
-    .s-ask-btn { font-family: var(--font-sans); font-size: 13px; font-weight: 500; padding: 0.6rem 1.25rem; border-radius: var(--radius-pill); border: 1px solid var(--green-dark); color: var(--green-dark); background: transparent; cursor: pointer; }
-    .s-ask-btn:hover { background: var(--green-pale); }
-
-
-    /* ── WHATSAPP SHARE ── */
-    .wa-btn { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-sans); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid #25D366; color: #128C7E; background: #F0FDF4; cursor: pointer; margin-top: 8px; transition: all 0.15s; }
-    .wa-btn:hover { background: #25D366; color: var(--white); }
-    .wa-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
-
-    /* ── LEGAL AID DIRECTORY ── */
+    .s-ask-btn { font-family: var(--font-sans); font-size: 13px; font-weight: 500; padding: 0.6rem 1.25rem; border-radius: var(--radius-pill); border: 1px solid var(--green-dark); color: var(--green-dark); background: transparent; cursor: pointer; margin-right: 8px; }
     .dir-panel { overflow-y: auto; padding: 1.5rem; }
     .dir-header { margin-bottom: 1.25rem; }
-    .dir-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; }
-    .dir-header p { font-size: 13px; color: var(--gray-3); margin-top: 4px; }
-    .dir-search { width: 100%; font-family: var(--font-sans); font-size: 14px; padding: 0.6rem 1rem; border: 1px solid var(--gray-5); border-radius: var(--radius-md); outline: none; background: var(--gray-6); color: var(--black); margin-bottom: 1.25rem; }
-    .dir-search:focus { border-color: var(--green-mid); background: var(--white); }
+    .dir-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; color: var(--text); }
+    .dir-header p { font-size: 13px; color: var(--text3); margin-top: 4px; }
+    .dir-search { width: 100%; font-family: var(--font-sans); font-size: 14px; padding: 0.6rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); outline: none; background: var(--bg2); color: var(--text); margin-bottom: 1.25rem; direction: ltr; text-align: left; }
+    .dir-search:focus { border-color: var(--green-mid); background: var(--bg); }
     .dir-section { margin-bottom: 1.5rem; }
-    .dir-section-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-3); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--gray-5); }
+    .dir-section-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text3); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
     .dir-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
-    .dir-card { background: var(--white); border: 1px solid var(--gray-5); border-radius: var(--radius-lg); padding: 1rem; transition: border-color 0.15s; }
+    .dir-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem; transition: border-color 0.15s; }
     .dir-card:hover { border-color: var(--green-light); }
-    .dir-card-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 3px; }
-    .dir-card-org { font-size: 11px; font-weight: 500; color: var(--green-dark); background: var(--green-pale); padding: 2px 8px; border-radius: var(--radius-pill); display: inline-block; margin-bottom: 6px; }
-    .dir-card-detail { font-size: 12px; color: var(--gray-2); line-height: 1.6; }
-    .dir-card-detail a { color: var(--green-dark); text-decoration: none; font-weight: 500; }
-    .dir-card-detail a:hover { text-decoration: underline; }
-    .dir-wa { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: #128C7E; background: #F0FDF4; border: 1px solid #25D366; border-radius: var(--radius-pill); padding: 3px 9px; cursor: pointer; margin-top: 8px; text-decoration: none; transition: all 0.15s; }
-    .dir-wa:hover { background: #25D366; color: var(--white); }
-    .dir-empty { text-align: center; color: var(--gray-3); font-size: 14px; padding: 2rem; }
     .national-card { border-left: 3px solid var(--green-dark); }
-    /* ── Footer ── */
-    .footer { text-align: center; font-size: 11px; color: var(--gray-4); padding: 0.4rem 1.5rem 0.7rem; background: var(--white); border-top: 1px solid var(--gray-5); }
+    .dir-card-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .dir-card-org { font-size: 11px; font-weight: 500; color: var(--green-dark); background: var(--green-pale); padding: 2px 8px; border-radius: var(--radius-pill); display: inline-block; margin-bottom: 6px; }
+    .dir-card-detail { font-size: 12px; color: var(--text2); line-height: 1.6; }
+    .dir-card-detail a { color: var(--green-dark); text-decoration: none; font-weight: 500; }
+    .dir-wa { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: #128C7E; background: #F0FDF4; border: 1px solid #25D366; border-radius: var(--radius-pill); padding: 3px 9px; cursor: pointer; margin-top: 8px; text-decoration: none; transition: all 0.15s; }
+    .dir-wa:hover { background: #25D366; color: #fff; }
+    .dir-empty { text-align: center; color: var(--text3); font-size: 14px; padding: 2rem; }
+    .cs-panel { overflow-y: auto; padding: 1.5rem; }
+    .cs-header { margin-bottom: 1.25rem; }
+    .cs-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; color: var(--text); }
+    .cs-header p { font-size: 13px; color: var(--text3); margin-top: 4px; }
+    .cs-search { width: 100%; font-family: var(--font-sans); font-size: 14px; padding: 0.7rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); outline: none; background: var(--bg2); color: var(--text); direction: ltr; text-align: left; margin-bottom: 1rem; }
+    .cs-search:focus { border-color: var(--green-mid); background: var(--bg); }
+    .cs-hints { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .cs-hint { font-family: var(--font-sans); font-size: 11px; padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--bg2); color: var(--text3); cursor: pointer; transition: all 0.15s; }
+    .cs-hint:hover { border-color: var(--green-light); color: var(--green-dark); }
+    .cs-result { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+    .cs-result-article { font-size: 11px; font-weight: 500; color: var(--green-dark); background: var(--green-pale); padding: 2px 8px; border-radius: var(--radius-pill); display: inline-block; margin-bottom: 8px; }
+    .cs-result-title { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+    .cs-result-text { font-size: 14px; color: var(--text2); line-height: 1.65; }
+    .cs-empty { text-align: center; color: var(--text3); padding: 3rem 1rem; }
+    .cs-empty .emoji { font-size: 32px; margin-bottom: 8px; }
+    .rv-panel { overflow-y: auto; padding: 1.5rem; }
+    .rv-header { margin-bottom: 1.25rem; }
+    .rv-header h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; color: var(--text); }
+    .rv-header p { font-size: 13px; color: var(--text3); margin-top: 4px; }
+    .rv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+    .rv-type { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem; cursor: pointer; transition: all 0.15s; background: var(--bg); }
+    .rv-type:hover { border-color: var(--green-light); transform: translateY(-1px); }
+    .rv-type.selected { border-color: var(--green-dark); background: var(--green-pale); }
+    .rv-type-icon { font-size: 24px; margin-bottom: 6px; }
+    .rv-type-name { font-size: 13px; font-weight: 500; color: var(--text); }
+    .rv-type-desc { font-size: 11px; color: var(--text3); margin-top: 3px; }
+    .rv-steps { display: none; }
+    .rv-steps.show { display: block; }
+    .rv-step { display: flex; gap: 12px; align-items: flex-start; padding: 1rem; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 10px; }
+    .rv-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--green-dark); color: #E1F5EE; font-size: 12px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rv-step-body { flex: 1; }
+    .rv-step-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .rv-step-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
+    .rv-step-text a { color: var(--green-dark); text-decoration: none; font-weight: 500; }
+    .footer { text-align: center; font-size: 11px; color: var(--text4); padding: 0.4rem 1.5rem 0.7rem; background: var(--bg); border-top: 1px solid var(--border); }
   </style>
 </head>
 <body>
 <div class="layout">
-
-  <!-- HEADER -->
   <header class="header">
-    <div class="logo">
-      <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="#9FE1CB" stroke-width="1.6"/><path d="M7.5 11h7M11 7.5v7" stroke="#E1F5EE" stroke-width="1.6" stroke-linecap="round"/></svg>
-    </div>
-    <div class="header-text">
-      <h1 id="appTitle">Haki Yetu — Your Rights</h1>
-      <p id="appSub">Kenya Civic Education · AI-Powered</p>
-    </div>
+    <div class="logo"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="#9FE1CB" stroke-width="1.6"/><path d="M7.5 11h7M11 7.5v7" stroke="#E1F5EE" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+    <div class="header-text"><h1 id="appTitle">Haki Yetu — Your Rights</h1><p id="appSub">Kenya Civic Education · AI-Powered</p></div>
     <div class="header-right">
       <span class="offline-badge" id="offlineBadge">📶 Offline</span>
+      <button class="icon-btn" id="darkBtn" onclick="toggleDark()" title="Toggle dark mode">🌙</button>
       <div class="lang-toggle">
         <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" data-lang="sw" onclick="setLang('sw')">SW</button>
       </div>
     </div>
   </header>
-
-  <!-- MODE TABS -->
   <nav class="mode-bar">
     <button class="mode-tab active" data-mode="chat" onclick="setMode('chat')"><span class="mode-icon">💬</span><span data-key="modeChat">Chat</span></button>
     <button class="mode-tab" data-mode="quiz" onclick="setMode('quiz')"><span class="mode-icon">🧠</span><span data-key="modeQuiz">Quiz</span></button>
     <button class="mode-tab" data-mode="scenarios" onclick="setMode('scenarios')"><span class="mode-icon">🛡️</span><span data-key="modeScenarios">Scenarios</span></button>
     <button class="mode-tab" data-mode="directory" onclick="setMode('directory')"><span class="mode-icon">📋</span><span data-key="modeDirectory">Help</span></button>
+    <button class="mode-tab" data-mode="search" onclick="setMode('search')"><span class="mode-icon">📖</span><span data-key="modeSearch">Constitution</span></button>
+    <button class="mode-tab" data-mode="report" onclick="setMode('report')"><span class="mode-icon">🚨</span><span data-key="modeReport">Report</span></button>
   </nav>
-
-  <!-- TOPIC BAR -->
-  <nav class="topic-bar" id="topicBar" aria-label="Topics">
+  <nav class="topic-bar" id="topicBar">
     <button class="chip active" data-topic="general" data-key-topic="topicGeneral">All Rights</button>
     <button class="chip" data-topic="voting" data-key-topic="topicVoting">Voting</button>
     <button class="chip" data-topic="police" data-key-topic="topicPolice">Police &amp; Arrest</button>
@@ -221,24 +235,20 @@
     <button class="chip" data-topic="expression" data-key-topic="topicExpr">Free Expression</button>
     <button class="chip" data-topic="gender" data-key-topic="topicGender">Gender Rights</button>
   </nav>
-
-  <!-- ── CHAT PANEL ── -->
   <section class="panel active" id="panel-chat" style="overflow:hidden;">
+    <div id="rotdBar"></div>
     <main class="chat" id="chat" role="log" aria-live="polite">
-      <div class="msg ai">
-        <div class="avatar ai">HY</div>
-        <div class="bubble">
-          <div class="badge">Kenya Constitution 2010</div>
-          <p id="welcomeMsg">Habari! I'm your civic rights guide for Kenya. Ask me anything about your rights — from voting and land to police conduct and free speech.</p>
-          <p style="margin-top:6px;" id="welcomeSub">Haki yako ni nguvu yako — your rights are your power.</p>
-          <div class="sugs" id="welcomeSugs">
-            <button class="sug" data-key="sug1" onclick="ask(T('sug1q'))">If I am arrested?</button>
-            <button class="sug" data-key="sug2" onclick="ask(T('sug2q'))">Voter registration?</button>
-            <button class="sug" data-key="sug3" onclick="ask(T('sug3q'))">Land rights?</button>
-            <button class="sug" data-key="sug4" onclick="ask(T('sug4q'))">Free healthcare?</button>
-          </div>
+      <div class="msg ai"><div class="avatar ai">HY</div><div class="bubble">
+        <div class="badge">Kenya Constitution 2010</div>
+        <p id="welcomeMsg">Habari! I'm your civic rights guide for Kenya. Ask me anything about your rights.</p>
+        <p style="margin-top:6px;" id="welcomeSub">Haki yako ni nguvu yako — your rights are your power.</p>
+        <div class="sugs">
+          <button class="sug" onclick="ask(T('sug1q'))">If I am arrested?</button>
+          <button class="sug" onclick="ask(T('sug2q'))">Voter registration?</button>
+          <button class="sug" onclick="ask(T('sug3q'))">Land rights?</button>
+          <button class="sug" onclick="ask(T('sug4q'))">Free healthcare?</button>
         </div>
-      </div>
+      </div></div>
     </main>
     <div class="input-wrap">
       <textarea id="input" rows="1" aria-label="Your message"></textarea>
@@ -247,677 +257,202 @@
       </button>
     </div>
   </section>
-
-  <!-- ── QUIZ PANEL ── -->
-  <section class="panel" id="panel-quiz">
-    <div class="quiz-panel" id="quizContent"></div>
-  </section>
-
-  <!-- ── SCENARIOS PANEL ── -->
-  <section class="panel" id="panel-scenarios">
-    <div class="scenario-panel" id="scenarioContent"></div>
-  </section>
-
-
-  <!-- ── DIRECTORY PANEL ── -->
+  <section class="panel" id="panel-quiz"><div class="quiz-panel" id="quizContent"></div></section>
+  <section class="panel" id="panel-scenarios"><div class="scenario-panel" id="scenarioContent"></div></section>
   <section class="panel" id="panel-directory">
-    <div class="dir-panel" id="directoryContent"></div>
+    <div class="dir-panel">
+      <div class="dir-header"><h2 id="dirTitle">Legal Aid Directory</h2><p id="dirSub">Free legal help and rights bodies across Kenya.</p></div>
+      <input class="dir-search" id="dirSearch" type="text" autocomplete="off" placeholder="Search by county, organisation or topic..." oninput="filterDirectory(this.value)" />
+      <div id="dirResults"></div>
+    </div>
   </section>
-
+  <section class="panel" id="panel-search">
+    <div class="cs-panel">
+      <div class="cs-header"><h2 id="csTitle">Constitution Search</h2><p id="csSub">Search any article or topic from the Kenya Constitution 2010.</p></div>
+      <input class="cs-search" id="csSearch" type="text" autocomplete="off" placeholder='Try "Article 49" or "land rights"...' oninput="searchConstitution(this.value)" />
+      <div class="cs-hints" id="csHints"></div>
+      <div id="csResults"></div>
+    </div>
+  </section>
+  <section class="panel" id="panel-report"><div class="rv-panel" id="reportContent"></div></section>
   <p class="footer" id="footerText">Educational information only · For legal advice, consult a qualified Kenyan advocate</p>
 </div>
-
 <script>
-// ═══════════════════════════════════════════════
-// TRANSLATIONS
-// ═══════════════════════════════════════════════
-const LANG = {
-  en: {
-    appTitle: 'Haki Yetu — Your Rights',
-    appSub: 'Kenya Civic Education · AI-Powered',
-    modeChat: 'Chat', modeQuiz: 'Quiz', modeScenarios: 'Scenarios',
-    topicGeneral: 'All Rights', topicVoting: 'Voting', topicPolice: 'Police & Arrest',
-    topicLand: 'Land Rights', topicHealth: 'Healthcare', topicEdu: 'Education',
-    topicExpr: 'Free Expression', topicGender: 'Gender Rights',
-    inputPlaceholder: 'Ask about your rights in Kenya...',
-    welcomeMsg: "Habari! I'm your civic rights guide for Kenya. Ask me anything about your rights — from voting and land to police conduct and free speech.",
-    welcomeSub: 'Haki yako ni nguvu yako — your rights are your power.',
-    sug1: 'If I am arrested?', sug2: 'Voter registration?', sug3: 'Land rights?', sug4: 'Free healthcare?',
-    sug1q: 'What are my rights if I am arrested?',
-    sug2q: 'How do I register to vote in Kenya?',
-    sug3q: 'What land rights do I have as a Kenyan?',
-    sug4q: 'What are my rights to free healthcare in Kenya?',
-    quizTitle: 'Test Your Knowledge', quizSub: 'Answer questions about your rights under the Kenya Constitution 2010.',
-    nextQ: 'Next question →', seeResult: 'See results →',
-    quizDone: 'Quiz Complete!', quizRestart: 'Try again',
-    scenarioTitle: 'Know Your Rights', scenarioSub: 'Real-life situations — know exactly what to do.',
-    backBtn: '← Back to scenarios', askAI: 'Ask AI about this situation',
-    footer: 'Educational information only · For legal advice, consult a qualified Kenyan advocate',
-    modeDirectory: 'Help',
-    dirTitle: 'Legal Aid Directory', dirSub: 'Free legal help and rights bodies across Kenya.',
-    dirSearch: 'Search by county, organisation or topic...',
-    dirNational: 'National Bodies', dirCounty: 'County & Regional Offices',
-    waShare: 'Share on WhatsApp', waChat: 'WhatsApp',
-    offlineNote: 'You are offline. Answers will use saved knowledge.',
-    connError: '⚠ Could not connect to server. Is it running?',
-    apiError: '⚠ Failed to get AI response. Check your API key.',
-  },
-  sw: {
-    appTitle: 'Haki Yetu — Haki Zako',
-    appSub: 'Elimu ya Kiraia · Inaendeshwa na AI',
-    modeChat: 'Mazungumzo', modeQuiz: 'Mtihani', modeScenarios: 'Hali',
-    topicGeneral: 'Haki Zote', topicVoting: 'Upigaji Kura', topicPolice: 'Polisi & Kukamatwa',
-    topicLand: 'Haki za Ardhi', topicHealth: 'Huduma ya Afya', topicEdu: 'Elimu',
-    topicExpr: 'Uhuru wa Kujieleza', topicGender: 'Haki za Kijinsia',
-    inputPlaceholder: 'Uliza kuhusu haki zako nchini Kenya...',
-    welcomeMsg: 'Karibu! Mimi ni mwongozo wako wa haki za kiraia Kenya. Niulize chochote kuhusu haki zako — kuanzia upigaji kura na ardhi hadi maswala ya polisi na uhuru wa kujieleza.',
-    welcomeSub: 'Haki yako ni nguvu yako.',
-    sug1: 'Nikikamatwa?', sug2: 'Usajili wa kupiga kura?', sug3: 'Haki za ardhi?', sug4: 'Huduma ya afya bure?',
-    sug1q: 'Nina haki gani nikikamatwa?',
-    sug2q: 'Ninajisajili vipi kupiga kura Kenya?',
-    sug3q: 'Nina haki gani za ardhi kama Mkenya?',
-    sug4q: 'Nina haki gani za huduma ya afya bure Kenya?',
-    quizTitle: 'Jaribu Ujuzi Wako', quizSub: 'Jibu maswali kuhusu haki zako chini ya Katiba ya Kenya 2010.',
-    nextQ: 'Swali lijalo →', seeResult: 'Ona matokeo →',
-    quizDone: 'Mtihani Umekamilika!', quizRestart: 'Jaribu tena',
-    scenarioTitle: 'Jua Haki Zako', scenarioSub: 'Hali za maisha halisi — jua hasa unachopaswa kufanya.',
-    backBtn: '← Rudi kwa hali', askAI: 'Uliza AI kuhusu hali hii',
-    footer: 'Taarifa za kielimu tu · Kwa ushauri wa kisheria, wasiliana na wakili',
-    modeDirectory: 'Msaada',
-    dirTitle: 'Orodha ya Msaada wa Kisheria', dirSub: 'Msaada wa kisheria bure na mashirika ya haki Kenya.',
-    dirSearch: 'Tafuta kwa kaunti, shirika au mada...',
-    dirNational: 'Mashirika ya Kitaifa', dirCounty: 'Ofisi za Kaunti na Kikanda',
-    waShare: 'Shiriki WhatsApp', waChat: 'WhatsApp',
-    offlineNote: 'Uko nje ya mtandao. Majibu yatatumia maarifa yaliyohifadhiwa.',
-    connError: '⚠ Haikuweza kuunganisha seva. Je, inafanya kazi?',
-    apiError: '⚠ Imeshindwa kupata jibu la AI. Angalia ufunguo wako wa API.',
-  }
-};
+var LANG={en:{appTitle:'Haki Yetu — Your Rights',appSub:'Kenya Civic Education · AI-Powered',modeChat:'Chat',modeQuiz:'Quiz',modeScenarios:'Scenarios',modeDirectory:'Help',modeSearch:'Constitution',modeReport:'Report',topicGeneral:'All Rights',topicVoting:'Voting',topicPolice:'Police & Arrest',topicLand:'Land Rights',topicHealth:'Healthcare',topicEdu:'Education',topicExpr:'Free Expression',topicGender:'Gender Rights',inputPlaceholder:'Ask about your rights in Kenya...',welcomeMsg:"Habari! I'm your civic rights guide for Kenya. Ask me anything about your rights — from voting and land to police conduct and free speech.",welcomeSub:'Haki yako ni nguvu yako — your rights are your power.',sug1q:'What are my rights if I am arrested?',sug2q:'How do I register to vote in Kenya?',sug3q:'What land rights do I have as a Kenyan?',sug4q:'What are my rights to free healthcare in Kenya?',rotdLabel:'📅 Right of the Day',quizTitle:'Test Your Knowledge',quizSub:'Answer questions about the Kenya Constitution 2010.',nextQ:'Next →',seeResult:'See results →',quizDone:'Quiz Complete!',quizRestart:'Try again',scenarioTitle:'Know Your Rights',scenarioSub:'Real-life situations — know exactly what to do.',backBtn:'Back',askAI:'Ask AI about this',dirTitle:'Legal Aid Directory',dirSub:'Free legal help and rights bodies across Kenya.',dirSearch:'Search by county, organisation or topic...',dirNational:'National Bodies',dirCounty:'County & Regional Offices',waShare:'Share on WhatsApp',csTitle:'Constitution Search',csSub:'Search any article or topic from the Kenya Constitution 2010.',csPlaceholder:'Try "Article 49" or "land rights"...',csNoResult:'No results found. Try a different term.',rvTitle:'Report a Violation',rvSub:'Step-by-step guide to reporting a rights violation in Kenya.',rvChoose:'What type of violation are you reporting?',footer:'Educational information only · For legal advice, consult a qualified Kenyan advocate',offlineNote:'Offline — using saved knowledge.',connError:'⚠ Could not connect to server.',apiError:'⚠ Failed to get AI response.',askAbout:'Ask AI about this right'},sw:{appTitle:'Haki Yetu — Haki Zako',appSub:'Elimu ya Kiraia · Inaendeshwa na AI',modeChat:'Mazungumzo',modeQuiz:'Mtihani',modeScenarios:'Hali',modeDirectory:'Msaada',modeSearch:'Katiba',modeReport:'Ripoti',topicGeneral:'Haki Zote',topicVoting:'Upigaji Kura',topicPolice:'Polisi & Kukamatwa',topicLand:'Haki za Ardhi',topicHealth:'Huduma ya Afya',topicEdu:'Elimu',topicExpr:'Uhuru wa Kujieleza',topicGender:'Haki za Kijinsia',inputPlaceholder:'Uliza kuhusu haki zako nchini Kenya...',welcomeMsg:'Karibu! Mimi ni mwongozo wako wa haki za kiraia Kenya. Niulize chochote kuhusu haki zako.',welcomeSub:'Haki yako ni nguvu yako.',sug1q:'Nina haki gani nikikamatwa?',sug2q:'Ninajisajili vipi kupiga kura Kenya?',sug3q:'Nina haki gani za ardhi kama Mkenya?',sug4q:'Nina haki gani za huduma ya afya bure Kenya?',rotdLabel:'📅 Haki ya Leo',quizTitle:'Jaribu Ujuzi Wako',quizSub:'Jibu maswali kuhusu Katiba ya Kenya 2010.',nextQ:'Ijayo →',seeResult:'Ona matokeo →',quizDone:'Mtihani Umekamilika!',quizRestart:'Jaribu tena',scenarioTitle:'Jua Haki Zako',scenarioSub:'Hali za maisha halisi.',backBtn:'Rudi',askAI:'Uliza AI',dirTitle:'Orodha ya Msaada wa Kisheria',dirSub:'Msaada wa kisheria bure Kenya.',dirSearch:'Tafuta kwa kaunti, shirika au mada...',dirNational:'Mashirika ya Kitaifa',dirCounty:'Ofisi za Kaunti',waShare:'Shiriki WhatsApp',csTitle:'Tafuta Katiba',csSub:'Tafuta ibara kutoka Katiba ya Kenya 2010.',csPlaceholder:'Jaribu "Ibara 49"...',csNoResult:'Hakuna matokeo.',rvTitle:'Ripoti Ukiukwaji',rvSub:'Mwongozo wa kuripoti ukiukwaji wa haki Kenya.',rvChoose:'Ni aina gani ya ukiukwaji unaoripoti?',footer:'Taarifa za kielimu tu · Kwa ushauri wa kisheria, wasiliana na wakili',offlineNote:'Uko nje ya mtandao.',connError:'⚠ Haikuweza kuunganisha seva.',apiError:'⚠ Imeshindwa kupata jibu.',askAbout:'Uliza AI kuhusu haki hii'}};
+var lang='en',topic='general',mode='chat',history=[],busy=false;
+function T(k){return LANG[lang][k]||LANG.en[k]||k;}
 
-let lang = 'en';
-let topic = 'general';
-let mode = 'chat';
-let history = [];
-let busy = false;
-let isOnline = navigator.onLine;
+// DARK MODE
+function initDark(){var s=localStorage.getItem('hy-dark'),p=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='true'||(s===null&&p)){document.documentElement.setAttribute('data-theme','dark');document.getElementById('darkBtn').textContent='☀️';}}
+function toggleDark(){var d=document.documentElement.getAttribute('data-theme')==='dark';document.documentElement.setAttribute('data-theme',d?'':'dark');document.getElementById('darkBtn').textContent=d?'🌙':'☀️';localStorage.setItem('hy-dark',!d);}
+initDark();
 
-function T(key) { return LANG[lang][key] || LANG.en[key] || key; }
+// LANGUAGE
+function setLang(l){lang=l;document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l);});applyTranslations();renderROTD();if(mode==='quiz')renderQuiz();if(mode==='scenarios')renderScenarios();if(mode==='report')renderReport();filterDirectory(document.getElementById('dirSearch').value);searchConstitution(document.getElementById('csSearch').value);}
+function applyTranslations(){document.getElementById('appTitle').textContent=T('appTitle');document.getElementById('appSub').textContent=T('appSub');document.getElementById('input').placeholder=T('inputPlaceholder');document.getElementById('footerText').textContent=T('footer');document.getElementById('welcomeMsg').textContent=T('welcomeMsg');document.getElementById('welcomeSub').textContent=T('welcomeSub');document.getElementById('dirTitle').textContent=T('dirTitle');document.getElementById('dirSub').textContent=T('dirSub');document.getElementById('dirSearch').placeholder=T('dirSearch');document.getElementById('csTitle').textContent=T('csTitle');document.getElementById('csSub').textContent=T('csSub');document.getElementById('csSearch').placeholder=T('csPlaceholder');document.querySelectorAll('[data-key]').forEach(function(el){var k=el.dataset.key;if(LANG[lang][k])el.textContent=T(k);});document.querySelectorAll('[data-key-topic]').forEach(function(el){var k=el.dataset.keyTopic;if(LANG[lang][k])el.textContent=T(k);});}
 
-function setLang(l) {
-  lang = l;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
-  applyTranslations();
-  if (mode === 'quiz') renderQuiz();
-  if (mode === 'scenarios') renderScenarios();
-}
+// ONLINE/OFFLINE
+window.addEventListener('online',function(){document.body.classList.remove('offline');});
+window.addEventListener('offline',function(){document.body.classList.add('offline');});
+if(!navigator.onLine)document.body.classList.add('offline');
 
-function applyTranslations() {
-  document.getElementById('appTitle').textContent = T('appTitle');
-  document.getElementById('appSub').textContent = T('appSub');
-  document.getElementById('input').placeholder = T('inputPlaceholder');
-  document.getElementById('footerText').textContent = T('footer');
-  document.getElementById('welcomeMsg').textContent = T('welcomeMsg');
-  document.getElementById('welcomeSub').textContent = T('welcomeSub');
-  document.querySelectorAll('[data-key]').forEach(el => {
-    const k = el.dataset.key;
-    if (LANG[lang][k]) el.textContent = T(k);
-  });
-  document.querySelectorAll('[data-key-topic]').forEach(el => {
-    const k = el.dataset.keyTopic;
-    if (LANG[lang][k]) el.textContent = T(k);
-  });
-}
+// OFFLINE KB
+var OKB={en:{arrest:'Under Article 49, if arrested you have the right to:\n1. Be told the reason immediately.\n2. Remain silent.\n3. Communicate with a lawyer.\n4. Not be compelled to confess.\n5. Appear in court within 24 hours.\n6. Be released on bond or bail.\n\nReport abuse: KNCHR 0800 720 627 (toll-free). Haki yako!',voting:'Under Article 38, every Kenyan aged 18+ has the right to vote. Register at any IEBC office. IEBC: 0800 724 242. Your vote is your voice!',land:'Under Article 40, you have the right to own property. The government cannot take your land without fair compensation. NLC: nlc.go.ke. Protect your land!',health:'Under Article 43, public hospitals must provide emergency treatment regardless of ability to pay. Your health is your right!',education:'Under Article 53, every child has the right to free and compulsory basic education. Education is your foundation!',expression:'Under Article 37, you can protest peacefully — notify police 3 days in advance. Speak your truth responsibly!',gender:'Under Article 27, gender discrimination is unconstitutional. Gender equality is the law!',general:'The Constitution of Kenya 2010 guarantees every Kenyan a Bill of Rights (Chapter 4). Haki yako ni nguvu yako!'},sw:{arrest:'Chini ya Ibara 49, ukikamatwa una haki ya kujua sababu, kukaa kimya, kuwasiliana na wakili, kupelekwa mahakamani ndani ya masaa 24. KNCHR: 0800 720 627. Haki yako!',general:'Katiba ya Kenya 2010 inahakikishia kila Mkenya Mswada wa Haki (Sura ya 4). Haki yako ni nguvu yako!'}};
+function getOA(q){var l=q.toLowerCase(),kb=OKB[lang]||OKB.en;if(l.includes('arrest')||l.includes('kamatwa')||l.includes('police'))return kb.arrest||OKB.en.arrest;if(l.includes('vote')||l.includes('kura')||l.includes('election'))return kb.voting||OKB.en.voting;if(l.includes('land')||l.includes('ardhi'))return kb.land||OKB.en.land;if(l.includes('health')||l.includes('afya')||l.includes('hospital'))return kb.health||OKB.en.health;if(l.includes('educat')||l.includes('school')||l.includes('elimu'))return kb.education||OKB.en.education;if(l.includes('express')||l.includes('speech')||l.includes('protest'))return kb.expression||OKB.en.expression;if(l.includes('gender')||l.includes('women')||l.includes('jinsia'))return kb.gender||OKB.en.gender;return kb.general||OKB.en.general;}
 
-// ═══════════════════════════════════════════════
-// OFFLINE DETECTION
-// ═══════════════════════════════════════════════
-function updateOnlineStatus() {
-  isOnline = navigator.onLine;
-  document.body.classList.toggle('offline', !isOnline);
-}
-window.addEventListener('online', updateOnlineStatus);
-window.addEventListener('offline', updateOnlineStatus);
-updateOnlineStatus();
+// RIGHT OF THE DAY
+var ROTD=[{article:'Article 26',title:'Right to Life',text:'Every person has the right to life. No person shall be deprived of life intentionally except as authorised by the Constitution.'},{article:'Article 27',title:'Equality & Non-Discrimination',text:'Every person is equal before the law. No person shall be discriminated against on grounds of race, sex, pregnancy, marital status, health status, age, disability, religion, or social origin.'},{article:'Article 28',title:'Human Dignity',text:'Every person has inherent dignity and the right to have that dignity respected and protected. No one can strip you of your dignity.'},{article:'Article 29',title:'Freedom & Security of Person',text:'Every person has the right not to be deprived of freedom arbitrarily, tortured, treated in a cruel or inhumane way, or subjected to medical experiments without consent.'},{article:'Article 31',title:'Privacy',text:'Every person has the right to privacy — their home shall not be searched, their possessions seized, or their communications infringed without justification.'},{article:'Article 33',title:'Freedom of Expression',text:'Every person has the right to freedom of expression, including freedom to seek, receive or impart information, artistic creativity, and academic freedom.'},{article:'Article 34',title:'Freedom of the Media',text:'Freedom and independence of electronic, print and all other types of media is guaranteed. The state shall not interfere with or penalise the media.'},{article:'Article 35',title:'Access to Information',text:'Every citizen has the right to access information held by the State or required for the exercise or protection of any right or fundamental freedom.'},{article:'Article 37',title:'Assembly & Demonstration',text:'Every person has the right, peaceably and unarmed, to assemble, demonstrate, picket, and present petitions to public authorities. Notify police 3 days before — permission is not required.'},{article:'Article 38',title:'Political Rights & Voting',text:'Every citizen aged 18+ has the right to vote by secret ballot in any election or referendum and to be a candidate for public office.'},{article:'Article 39',title:'Freedom of Movement',text:'Every person has the right to move freely in Kenya, to leave Kenya, to enter Kenya, and to reside anywhere in the country.'},{article:'Article 40',title:'Property Rights',text:'Every person has the right to acquire and own property. The State shall not deprive a person of property arbitrarily. Compulsory acquisition requires prompt, just and fair compensation.'},{article:'Article 43',title:'Economic & Social Rights',text:'Every person has the right to healthcare, adequate housing, food of acceptable quality, clean and safe water, social security, and education.'},{article:'Article 47',title:'Fair Administrative Action',text:'Every person has the right to administrative action that is expeditious, efficient, lawful, reasonable and procedurally fair — with written reasons if rights are affected.'},{article:'Article 49',title:'Rights of an Arrested Person',text:'If arrested: right to be informed of the reason, remain silent, communicate with a lawyer, not confess under compulsion, appear in court within 24 hours, and be released on bond or bail.'},{article:'Article 50',title:'Fair Hearing',text:'Every accused person is presumed innocent until proved guilty. Every person has the right to a fair and public hearing before an independent and impartial tribunal.'},{article:'Article 53',title:'Rights of Children',text:'Every child has the right to a name and nationality, parental care, nutrition, shelter, healthcare, and free and compulsory basic education — and protection from abuse and exploitation.'},{article:'Article 54',title:'Rights of Persons with Disabilities',text:'A person with any disability is entitled to be treated with dignity, to access educational institutions, public places, public transport, and information in accessible formats.'},{article:'Article 56',title:'Rights of Minorities',text:'The State shall put in place affirmative action programmes to ensure minorities and marginalised groups are represented in governance and benefit from development.'},{article:'Article 60',title:'Land Policy Principles',text:'Land in Kenya shall be held, used and managed equitably, efficiently, productively and sustainably. Historical land injustices shall be addressed.'},{article:'Article 73',title:'Responsibilities of Leadership',text:'Authority assigned to a State officer is a public trust. It must be exercised for the people\'s benefit, in accordance with the Constitution, with integrity and accountability.'},{article:'Article 232',title:'Values of Public Service',text:'Public servants must uphold professional ethics, efficient use of public resources, responsive and impartial service, and accountability for all administrative acts.'}];
+function renderROTD(){var d=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/86400000),r=ROTD[d%ROTD.length];document.getElementById('rotdBar').innerHTML='<div class="rotd"><div class="rotd-label">'+T('rotdLabel')+'</div><div class="rotd-article">'+r.article+' — '+r.title+'</div><div class="rotd-text">'+r.text+'</div><button class="rotd-ask" onclick="ask(\'Tell me more about '+r.article+' in simple terms with examples\')">'+T('askAbout')+' ↗</button></div>';}
 
-// ═══════════════════════════════════════════════
-// OFFLINE KNOWLEDGE BASE
-// ═══════════════════════════════════════════════
-const offlineKB = {
-  en: {
-    arrest: `Under Article 49 of the Constitution of Kenya 2010, if you are arrested you have the right to:\n1. Be told the reason for your arrest immediately, in a language you understand.\n2. Remain silent and not say anything that may be used against you.\n3. Communicate with a lawyer and have them present during questioning.\n4. Not be compelled to confess or make any admission.\n5. Be brought before a court within 24 hours (or 36 hours if far from a court).\n6. Be released on bond or bail on reasonable conditions.\n\nPolice cannot beat, torture, or threaten you. Report any abuse to the KNCHR at 0800 720 627 (toll-free). Haki yako — know your rights!`,
-    voting: `Under Articles 38 and 83 of the Constitution 2010, every Kenyan citizen aged 18 or above has the right to vote. To register, visit an IEBC office with your national ID or passport. You have the right to vote freely and fairly, in secret, without intimidation. The IEBC is the body that manages elections. Contact them at 0800 724 242 (toll-free). Your vote is your voice!`,
-    land: `Under Articles 40 and 60 of the Constitution, every Kenyan has the right to own property. The state cannot take your land without fair compensation and a proper legal process. Land must be used equitably and productively. The National Land Commission (NLC) oversees land rights. If your land is threatened, contact the NLC or a legal aid clinic. Protect your land — it is your heritage!`,
-    health: `Under Article 43, every person in Kenya has the right to the highest attainable standard of health, including reproductive healthcare. Public hospitals cannot turn away emergency patients. Pregnant women and children under 5 are entitled to free healthcare in public facilities. Contact the Ministry of Health or KNCHR if your rights are denied. Your health is your right!`,
-    education: `Under Article 43 and 53, every child in Kenya has the right to free and compulsory basic education. No child should be denied schooling due to lack of fees in public primary schools. Parents have a duty to ensure their children attend school. Contact the Ministry of Education if a child is denied schooling. Education is the key to a better Kenya!`,
-    expression: `Under Articles 33-37, Kenyans have the right to freedom of expression, the press, peaceful assembly, and association. You can protest peacefully — notify police 3 days in advance. The media has freedom to operate without censorship. However, hate speech and incitement to violence are not protected. Speak your truth responsibly!`,
-    gender: `Under Article 27 and the two-thirds gender rule, no more than two-thirds of elective or appointed bodies should be of the same gender. Women have equal rights to men in all areas including property, employment, and family. Discrimination based on gender is unconstitutional. Contact the Kenya National Human Rights Commission for violations. Gender equality is the law!`,
-    general: `The Constitution of Kenya 2010 guarantees every Kenyan a Bill of Rights (Chapter 4). Key rights include: the right to life (Art. 26), dignity (Art. 28), equality (Art. 27), fair trial (Art. 50), privacy (Art. 31), and economic and social rights (Art. 43). These rights belong to you — know them, use them, protect them. Haki yako ni nguvu yako!`,
-  },
-  sw: {
-    arrest: `Chini ya Ibara ya 49 ya Katiba ya Kenya 2010, ukikamatwa una haki ya:\n1. Kuambiwa sababu ya kukamatwa kwako mara moja, kwa lugha unayoielewa.\n2. Kukaa kimya na kutosema chochote kinachoweza kutumika dhidi yako.\n3. Kuwasiliana na wakili na kuwa naye wakati wa mahojiano.\n4. Kutokubaliishwa kukiri au kutoa taarifa yoyote.\n5. Kupelekwa mahakamani ndani ya masaa 24 (au 36 kama uko mbali na mahakama).\n6. Kuachiwa kwa dhamana au kifungo cha dhamana kwa masharti ya busara.\n\nPolisi hawawezi kukupiga, kukutesa, au kukutishia. Ripoti unyanyasaji kwa KNCHR kupitia 0800 720 627 (bure). Haki yako — ijue!`,
-    general: `Katiba ya Kenya 2010 inahakikishia kila Mkenya Mswada wa Haki (Sura ya 4). Haki kuu ni pamoja na: haki ya kuishi (Ibara 26), heshima (Ibara 28), usawa (Ibara 27), kesi ya haki (Ibara 50), faragha (Ibara 31), na haki za kiuchumi na kijamii (Ibara 43). Haki hizi ni zako — zijue, zitumie, zihifadhi. Haki yako ni nguvu yako!`,
-  }
-};
+// MODE
+function setMode(m){mode=m;document.querySelectorAll('.mode-tab').forEach(function(t){t.classList.toggle('active',t.dataset.mode===m);});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});document.getElementById('panel-'+m).classList.add('active');document.getElementById('topicBar').style.display=m==='chat'?'flex':'none';if(m==='quiz')renderQuiz();if(m==='scenarios')renderScenarios();if(m==='report')renderReport();if(m==='directory')filterDirectory(document.getElementById('dirSearch').value);if(m==='search')renderCSHints();}
 
-function getOfflineAnswer(q) {
-  const lower = q.toLowerCase();
-  const kb = offlineKB[lang] || offlineKB.en;
-  if (lower.includes('arrest') || lower.includes('kamatwa') || lower.includes('police') || lower.includes('polisi')) return kb.arrest || offlineKB.en.arrest;
-  if (lower.includes('vote') || lower.includes('kura') || lower.includes('election')) return kb.voting || offlineKB.en.voting;
-  if (lower.includes('land') || lower.includes('ardhi') || lower.includes('property')) return kb.land || offlineKB.en.land;
-  if (lower.includes('health') || lower.includes('afya') || lower.includes('hospital')) return kb.health || offlineKB.en.health;
-  if (lower.includes('educat') || lower.includes('school') || lower.includes('elimu')) return kb.education || offlineKB.en.education;
-  if (lower.includes('express') || lower.includes('speech') || lower.includes('protest') || lower.includes('kujieleza')) return kb.expression || offlineKB.en.expression;
-  if (lower.includes('gender') || lower.includes('women') || lower.includes('jinsia') || lower.includes('wanawake')) return kb.gender || offlineKB.en.gender;
-  return kb.general || offlineKB.en.general;
-}
-
-// ═══════════════════════════════════════════════
-// MODE SWITCHING
-// ═══════════════════════════════════════════════
-function setMode(m) {
-  mode = m;
-  document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === m));
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + m).classList.add('active');
-  document.getElementById('topicBar').style.display = m === 'chat' ? 'flex' : 'none';
-  if (m === 'quiz') renderQuiz();
-  if (m === 'scenarios') renderScenarios();
-  if (m === 'directory') renderDirectory();
-}
-
-// ═══════════════════════════════════════════════
 // TOPIC CHIPS
-// ═══════════════════════════════════════════════
-document.querySelectorAll('.chip').forEach(c => {
-  c.addEventListener('click', () => {
-    document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
-    c.classList.add('active');
-    topic = c.dataset.topic;
-  });
-});
+document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('active');});c.classList.add('active');topic=c.dataset.topic;});});
 
-// ═══════════════════════════════════════════════
+// WHATSAPP
+function waSVG(){return '<svg viewBox="0 0 24 24" fill="#25D366" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>';}
+function waButton(text,question){var msg=encodeURIComponent('🌿 *Haki Yetu — Your Rights*\n\n*Q: '+question+'*\n\n'+text+'\n\nLearn more: https://hakiyetu.co.ke');return '<a class="wa-btn" href="https://wa.me/?text='+msg+'" target="_blank" rel="noopener">'+waSVG()+T('waShare')+'</a>';}
+
 // CHAT
-// ═══════════════════════════════════════════════
-const topicContexts = {
-  general: 'Kenyan civic rights and the Constitution of Kenya 2010',
-  voting: 'voting rights, elections, and the IEBC in Kenya',
-  police: 'rights during police encounters, arrest, and detention in Kenya under Article 49',
-  land: 'land rights, land ownership, and the National Land Commission in Kenya',
-  health: 'the right to health and healthcare in Kenya under Article 43',
-  education: 'the right to education and free primary education in Kenya under Article 43',
-  expression: 'freedom of expression, media, and assembly in Kenya under Articles 33-37',
-  gender: "gender equality, women's rights, and the two-thirds gender rule in Kenya",
-};
+var TC={general:'Kenyan civic rights and the Constitution of Kenya 2010',voting:'voting rights, elections, and the IEBC in Kenya',police:'rights during police encounters, arrest, and detention in Kenya under Article 49',land:'land rights, land ownership, and the National Land Commission in Kenya',health:'the right to health and healthcare in Kenya under Article 43',education:'the right to education and free primary education in Kenya under Article 43',expression:'freedom of expression, media, and assembly in Kenya under Articles 33-37',gender:"gender equality, women's rights, and the two-thirds gender rule in Kenya"};
+var inputEl=document.getElementById('input');
+inputEl.addEventListener('input',function(){inputEl.style.height='auto';inputEl.style.height=Math.min(inputEl.scrollHeight,120)+'px';});
+inputEl.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}});
+function ask(q){if(busy)return;inputEl.value=q;send();}
+function scrollDown(){var c=document.getElementById('chat');c.scrollTop=c.scrollHeight;}
+function addMsg(role,html){var chat=document.getElementById('chat'),wrap=document.createElement('div');wrap.className='msg '+role;wrap.innerHTML='<div class="avatar '+(role==='user'?'me':'ai')+'">'+(role==='user'?'Me':'HY')+'</div><div class="bubble">'+html+'</div>';chat.appendChild(wrap);scrollDown();}
+function showTyping(){var chat=document.getElementById('chat'),wrap=document.createElement('div');wrap.className='msg ai';wrap.id='typing';wrap.innerHTML='<div class="avatar ai">HY</div><div class="bubble"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';chat.appendChild(wrap);scrollDown();}
+function removeTyping(){var t=document.getElementById('typing');if(t)t.remove();}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
+async function send(){if(busy)return;var q=inputEl.value.trim();if(!q)return;inputEl.value='';inputEl.style.height='auto';busy=true;document.getElementById('sendBtn').disabled=true;addMsg('user',esc(q));history.push({role:'user',content:q});showTyping();
+if(!navigator.onLine){await new Promise(function(r){setTimeout(r,600);});removeTyping();var ans=getOA(q);history.push({role:'assistant',content:ans});addMsg('ai','<div class="badge">📶 Offline</div>'+esc(ans)+'<br>'+waButton(ans,q));busy=false;document.getElementById('sendBtn').disabled=false;inputEl.focus();return;}
+try{var res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history,topic:topic,lang:lang})});var data=await res.json();removeTyping();if(data.error){addMsg('ai','<span class="err">'+T('apiError')+'</span>');}else{history.push({role:'assistant',content:data.content});addMsg('ai','<div class="badge">Kenya Constitution 2010</div>'+esc(data.content)+'<br>'+waButton(data.content,q));}}catch(e){removeTyping();addMsg('ai','<span class="err">'+T('connError')+'</span>');}
+busy=false;document.getElementById('sendBtn').disabled=false;inputEl.focus();}
 
-const inputEl = document.getElementById('input');
-inputEl.addEventListener('input', () => {
-  inputEl.style.height = 'auto';
-  inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
-});
-inputEl.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
+// QUIZ - 44 questions across 8 topics
+var AQ={en:[
+{topic:'police',q:'Under which article do you have the right to remain silent when arrested?',article:'Article 49',opts:['Article 25','Article 49','Article 33','Article 60'],ans:1,explain:'Article 49 covers arrest rights including the right to remain silent and not be compelled to make any confession.'},
+{topic:'police',q:'How long can police hold you before bringing you to court?',article:'Article 49(1)(f)',opts:['12 hours','24 hours (or 36 if far from court)','48 hours','72 hours'],ans:1,explain:'You must appear before a court within 24 hours, or 36 hours if no court is nearby.'},
+{topic:'police',q:'What is the role of IPOA?',article:'IPOA Act',opts:['To prosecute criminals','To oversee police conduct and handle complaints','To manage elections','To register land'],ans:1,explain:'IPOA (Independent Policing Oversight Authority) handles complaints against police officers and investigates misconduct. Call 0800 722 362.'},
+{topic:'police',q:'Which article protects you from torture?',article:'Article 29',opts:['Article 25','Article 29','Article 33','Article 49'],ans:1,explain:'Article 29 guarantees freedom from torture, cruel treatment, and arbitrary detention.'},
+{topic:'police',q:'Can police search your home without a warrant?',article:'Article 31',opts:['Yes, anytime','No, they generally need a court warrant','Yes, if they suspect a crime','Only at night'],ans:1,explain:'Article 31 protects privacy. Police generally need a court-issued search warrant to enter your home.'},
+{topic:'police',q:'Which body can you report unlawful police action to for free?',article:'Article 49',opts:['IEBC','EACC','KNCHR','NLC'],ans:2,explain:'The Kenya National Commission on Human Rights (KNCHR) investigates rights violations. Call 0800 720 627 (toll-free).'},
+{topic:'police',q:'What does "presumption of innocence" mean?',article:'Article 50',opts:['Guilty until proven innocent','Innocent until proven guilty','Courts decide before trial','Police can detain without charge'],ans:1,explain:'Article 50 guarantees that every accused person is presumed innocent until the prosecution proves guilt.'},
+{topic:'voting',q:'What is the minimum voting age in Kenya?',article:'Article 38',opts:['16','21','18','25'],ans:2,explain:'Article 38 grants every citizen aged 18 or older the right to vote in any election or referendum.'},
+{topic:'voting',q:'Which body manages elections in Kenya?',article:'Article 88',opts:['National Assembly','IEBC','Supreme Court','KNCHR'],ans:1,explain:'The Independent Electoral and Boundaries Commission (IEBC) manages elections, voter registration, and boundaries.'},
+{topic:'voting',q:'What is the purpose of secret ballot voting?',article:'Article 38',opts:['To slow down voting','To protect your privacy and prevent intimidation','To make counting harder','To allow multiple votes'],ans:1,explain:'Secret ballot ensures your vote is private, protecting you from intimidation and vote buying.'},
+{topic:'voting',q:'How often are general elections held in Kenya?',article:'Article 101',opts:['Every 3 years','Every 4 years','Every 5 years','Every 6 years'],ans:2,explain:'General elections in Kenya are held every five years on the second Tuesday of August.'},
+{topic:'voting',q:'What is the IEBC toll-free number?',article:'Article 88',opts:['0800 720 627','0800 724 242','0800 722 362','0800 720 601'],ans:1,explain:'The IEBC toll-free number is 0800 724 242. Use it to report election irregularities.'},
+{topic:'land',q:'Which article protects your right to own property?',article:'Article 40',opts:['Article 26','Article 33','Article 40','Article 53'],ans:2,explain:'Article 40 protects every person\'s right to acquire and own property.'},
+{topic:'land',q:'Which body oversees land rights in Kenya?',article:'Article 67',opts:['KNCHR','IEBC','National Land Commission','Ministry of Finance'],ans:2,explain:'The National Land Commission (NLC) manages public land and resolves land disputes.'},
+{topic:'land',q:'Can the government compulsorily acquire your land?',article:'Article 40(3)',opts:['No, never','Yes, with prompt and just compensation only','Yes, without compensation','Only in war'],ans:1,explain:'The government can only acquire land for public purposes with prompt, just and fair compensation.'},
+{topic:'land',q:'What are the three categories of land in Kenya?',article:'Article 61',opts:['Private, public, communal','National, county, private','Public, community, private','Urban, rural, forest'],ans:2,explain:'Article 61 classifies all land in Kenya as public, community or private land.'},
+{topic:'land',q:'Which organisation offers free legal aid for land disputes?',article:'Article 48',opts:['LSK','EACC','Kituo Cha Sheria','NGEC'],ans:2,explain:'Kituo Cha Sheria offers free legal aid including land disputes. Call 0800 720 434 (toll-free).'},
+{topic:'health',q:'Which article gives you the right to healthcare?',article:'Article 43',opts:['Article 26','Article 43','Article 53','Article 60'],ans:1,explain:'Article 43 guarantees every person the right to the highest attainable standard of health.'},
+{topic:'health',q:'Can a public hospital deny you emergency care if you cannot pay?',article:'Article 43',opts:['Yes always','No — emergency care must be given regardless','Only if you have no ID','Yes if it is private'],ans:1,explain:'Article 43 ensures access to healthcare. Public hospitals must provide emergency treatment regardless of ability to pay.'},
+{topic:'health',q:'Which programme provides free maternity care to pregnant women?',article:'Article 43',opts:['Linda Mama','Afya Yetu','Mama Salama','Haki Mama'],ans:0,explain:'The Linda Mama programme provides free maternity services in public health facilities.'},
+{topic:'health',q:'Which article guarantees the right to clean and safe water?',article:'Article 43(1)(d)',opts:['Article 26','Article 43','Article 53','Article 60'],ans:1,explain:'Article 43(1)(d) guarantees every person the right to clean and safe water in adequate quantities.'},
+{topic:'education',q:'Every child has the right to free basic education under which article?',article:'Article 53',opts:['Article 43','Article 53','Article 60','Article 35'],ans:1,explain:'Article 53 guarantees every child the right to free and compulsory basic education.'},
+{topic:'education',q:'Can a public primary school deny admission for lack of fees?',article:'Article 53',opts:['Yes, fees must be paid first','No, basic education is free and compulsory','Only in rural areas','Yes for classes above Standard 4'],ans:1,explain:'Article 53 makes basic education free and compulsory. No child can be denied schooling due to fees.'},
+{topic:'education',q:'Academic freedom is protected under which article?',article:'Article 33',opts:['Article 33','Article 49','Article 27','Article 43'],ans:0,explain:'Article 33 protects freedom of expression including academic freedom and scientific research.'},
+{topic:'education',q:'Which ministry oversees education in Kenya?',article:'Article 53',opts:['Ministry of Health','Ministry of Education','Ministry of Labour','Ministry of Finance'],ans:1,explain:'The Ministry of Education oversees Kenya\'s education system from early childhood to university level.'},
+{topic:'expression',q:'How many days notice must you give police before a public protest?',article:'Article 37',opts:['1 day','3 days','7 days','14 days'],ans:1,explain:'Article 37 requires only notification — not permission — 3 days in advance before a public demonstration.'},
+{topic:'expression',q:'Which article protects freedom of the press?',article:'Article 34',opts:['Article 33','Article 34','Article 35','Article 37'],ans:1,explain:'Article 34 guarantees freedom and independence of electronic, print and all other types of media.'},
+{topic:'expression',q:'What does Article 35 guarantee?',article:'Article 35',opts:['Right to vote','Access to information held by the state','Right to land','Right to education'],ans:1,explain:'Article 35 gives every citizen the right to access information held by the State.'},
+{topic:'expression',q:'Is hate speech protected under freedom of expression?',article:'Article 33(2)',opts:['Yes, all speech is protected','No, hate speech is explicitly excluded','Only in private','Only online'],ans:1,explain:'Article 33(2) explicitly excludes hate speech, propaganda for war, and incitement to violence.'},
+{topic:'expression',q:'What is the role of the Communications Authority?',article:'Article 34',opts:['To censor all media','To regulate broadcasting and telecommunications','To manage voter registration','To investigate land disputes'],ans:1,explain:'The Communications Authority (CA) regulates broadcasting, postal and telecommunications services in Kenya.'},
+{topic:'gender',q:'Under the two-thirds gender rule, what applies to appointed bodies?',article:'Article 27',opts:['Half must be women','No more than two-thirds of the same gender','All must be men','No rule applies'],ans:1,explain:'Article 27 requires that no more than two-thirds of members of elected or appointed bodies be of the same gender.'},
+{topic:'gender',q:'Which body handles gender discrimination complaints?',article:'Article 59',opts:['IEBC','KNCHR','NGEC','EACC'],ans:2,explain:'The National Gender and Equality Commission (NGEC) promotes gender equality and handles discrimination complaints.'},
+{topic:'gender',q:'Gender discrimination in employment is prohibited by which law?',article:'Employment Act 2007',opts:['Companies Act','Employment Act 2007','Land Act','Penal Code'],ans:1,explain:'The Employment Act 2007 explicitly prohibits discrimination based on gender in hiring.'},
+{topic:'gender',q:'What is FIDA Kenya?',article:'Article 27',opts:['A land commission','Federation of Women Lawyers providing free legal aid','A political party','An election body'],ans:1,explain:'FIDA Kenya provides free legal aid to women and children on various matters.'},
+{topic:'general',q:'When was the current Kenya Constitution adopted?',article:'Preamble',opts:['2005','2008','2010','2013'],ans:2,explain:'The Constitution of Kenya 2010 was adopted on 4th August 2010 and promulgated on 27th August 2010.'},
+{topic:'general',q:'Which chapter contains the Bill of Rights?',article:'Chapter 4',opts:['Chapter 2','Chapter 3','Chapter 4','Chapter 5'],ans:2,explain:'Chapter Four of the Constitution of Kenya 2010 contains the Bill of Rights.'},
+{topic:'general',q:'What is the role of the Ombudsman (CAJ)?',article:'Article 59',opts:['Manages government land','Handles complaints about government services','Prosecutes criminals','Manages elections'],ans:1,explain:'The Commission on Administrative Justice (Ombudsman) investigates complaints about public officers and government services.'},
+{topic:'general',q:'Which article establishes the right to a fair hearing?',article:'Article 50',opts:['Article 27','Article 40','Article 50','Article 53'],ans:2,explain:'Article 50 guarantees every person the right to have any dispute resolved by an independent and impartial tribunal.'},
+{topic:'general',q:'What is Kenya\'s national motto?',article:'Preamble',opts:['Umoja ni nguvu','Harambee','Haki yetu','Amani na upendo'],ans:1,explain:'Kenya\'s national motto is "Harambee" — a call for collective effort and pulling together.'},
+{topic:'general',q:'Which right cannot be limited even in a state of emergency?',article:'Article 25',opts:['Right to vote','Freedom from torture and slavery','Right to property','Right to education'],ans:1,explain:'Article 25 lists non-derogable rights including freedom from torture and slavery.'},
+{topic:'general',q:'How many counties are in Kenya?',article:'Article 6',opts:['42','47','52','65'],ans:1,explain:'Kenya has 47 counties, each with an elected governor and county assembly.'},
+{topic:'general',q:'What does EACC stand for and what does it do?',article:'Article 79',opts:['Ethics and Anti-Corruption Commission — fights corruption','Electoral and Admin Control — manages elections','Environmental Control Council — manages farms','None of the above'],ans:0,explain:'The EACC investigates corruption and enforces ethics in public service. Report corruption at 0800 720 601.'},
+{topic:'general',q:'Which article protects children from harmful cultural practices?',article:'Article 53',opts:['Article 27','Article 43','Article 53','Article 60'],ans:2,explain:'Article 53 protects every child from abuse, neglect, harmful cultural practices, and all forms of violence.'},
+{topic:'general',q:'What is devolution in Kenya?',article:'Chapter 11',opts:['Transfer of power from counties to national government','Transfer of power from national to county governments','A type of election','A form of taxation'],ans:1,explain:'Devolution transfers political and administrative power to 47 county governments, bringing services closer to the people.'}
+],sw:[
+{topic:'police',q:'Chini ya ibara gani una haki ya kukaa kimya unapokamatwa?',article:'Ibara 49',opts:['Ibara 25','Ibara 49','Ibara 33','Ibara 60'],ans:1,explain:'Ibara ya 49 inashughulikia haki za wakati wa kukamatwa, ikiwemo haki ya kukaa kimya.'},
+{topic:'police',q:'Polisi wanaweza kukushikilia kwa muda gani kabla ya kukupeleka mahakamani?',article:'Ibara 49(1)(f)',opts:['Masaa 12','Masaa 24 (au 36 kama mahakama iko mbali)','Masaa 48','Masaa 72'],ans:1,explain:'Lazima uonekane mahakamani ndani ya masaa 24, au 36 kama hakuna mahakama karibu.'},
+{topic:'voting',q:'Umri wa chini wa kupiga kura Kenya ni miaka mingapi?',article:'Ibara 38',opts:['Miaka 16','Miaka 21','Miaka 18','Miaka 25'],ans:2,explain:'Ibara ya 38 inampa kila raia aliye na miaka 18 au zaidi haki ya kupiga kura.'},
+{topic:'voting',q:'Ni chombo gani kinachosimamia uchaguzi Kenya?',article:'Ibara 88',opts:['Bunge la Taifa','IEBC','Mahakama Kuu','KNCHR'],ans:1,explain:'Tume Huru ya Uchaguzi na Mipaka (IEBC) inasimamia uchaguzi na usajili wa wapiga kura.'},
+{topic:'land',q:'Ibara gani inalinda haki yako ya kumiliki mali?',article:'Ibara 40',opts:['Ibara 26','Ibara 33','Ibara 40','Ibara 53'],ans:2,explain:'Ibara 40 inalinda haki ya kila mtu ya kupata na kumiliki mali.'},
+{topic:'health',q:'Ibara gani inakupa haki ya huduma ya afya?',article:'Ibara 43',opts:['Ibara 26','Ibara 43','Ibara 53','Ibara 60'],ans:1,explain:'Ibara 43 inahakikishia kila mtu haki ya kiwango cha juu zaidi cha afya.'},
+{topic:'education',q:'Kila mtoto ana haki ya elimu ya msingi bure chini ya ibara gani?',article:'Ibara 53',opts:['Ibara 43','Ibara 53','Ibara 60','Ibara 35'],ans:1,explain:'Ibara ya 53 inahakikishia kila mtoto haki ya elimu ya msingi bure na ya lazima.'},
+{topic:'expression',q:'Unahitaji kutoa notisi ya siku ngapi kabla ya maandamano?',article:'Ibara 37',opts:['Siku 1','Siku 3','Siku 7','Siku 14'],ans:1,explain:'Ibara ya 37 inahitaji taarifa — si ruhusa — siku 3 kabla ya maandamano.'},
+{topic:'gender',q:'Sheria gani inakataza ubaguzi wa jinsia katika ajira?',article:'Sheria ya Ajira 2007',opts:['Sheria ya Makampuni','Sheria ya Ajira 2007','Sheria ya Ardhi','Kanuni ya Adhabu'],ans:1,explain:'Sheria ya Ajira 2007 inakataza wazi ubaguzi wa jinsia katika uajiri.'},
+{topic:'general',q:'Katiba ya sasa ya Kenya ilipitishwa mwaka gani?',article:'Dibaji',opts:['2005','2008','2010','2013'],ans:2,explain:'Katiba ya Kenya 2010 ilipitishwa tarehe 4 Agosti 2010.'},
+{topic:'general',q:'Sura gani ya Katiba ina Mswada wa Haki?',article:'Sura ya 4',opts:['Sura ya 2','Sura ya 3','Sura ya 4','Sura ya 5'],ans:2,explain:'Sura ya Nne ya Katiba ya Kenya 2010 ina Mswada wa Haki.'}
+]};
 
-function ask(q) { if (busy) return; inputEl.value = q; send(); }
+var qState={idx:0,score:0,answered:false,questions:[],tf:'all',langSet:''};
+function getQs(f){var qs=AQ[lang]||AQ.en;return f==='all'?qs:qs.filter(function(q){return q.topic===f;});}
+function renderQuiz(){if(qState.langSet!==lang){qState={idx:0,score:0,answered:false,questions:getQs(qState.tf||'all'),tf:qState.tf||'all',langSet:lang};}
+var el=document.getElementById('quizContent'),{idx,score,questions,tf}=qState;
+var filters=['all','police','voting','land','health','education','expression','gender','general'];
+var fLabels={all:'All',police:'Police',voting:'Voting',land:'Land',health:'Health',education:'Education',expression:'Expression',gender:'Gender',general:'General'};
+var fHTML='<div class="topic-filter">'+filters.map(function(f){return '<button class="tf-btn'+(tf===f?' active':'')+'" onclick="setQF(\''+f+'\')">'+fLabels[f]+'</button>';}).join('')+'</div>';
+if(!questions.length){el.innerHTML='<div class="quiz-panel"><div class="quiz-header"><h2>'+T('quizTitle')+'</h2><p>'+T('quizSub')+'</p></div>'+fHTML+'<div class="dir-empty">No questions for this topic.</div></div>';return;}
+if(idx>=questions.length){var pct=Math.round(score/questions.length*100),emoji=pct>=80?'🏆':pct>=50?'👍':'📚';el.innerHTML='<div class="quiz-panel">'+fHTML+'<div class="quiz-result"><div class="big">'+emoji+'</div><h3>'+T('quizDone')+'</h3><p style="font-size:24px;font-weight:500;margin:8px 0;">'+score+'/'+questions.length+'</p><p>'+pct+'% — '+(pct>=80?'Excellent! You know your rights well.':pct>=50?'Good effort! Keep learning.':'Keep studying — knowledge is power!')+'</p><button class="btn-restart" onclick="restartQuiz()">'+T('quizRestart')+'</button></div></div>';return;}
+var q=questions[idx],prog=(idx/questions.length*100).toFixed(0);
+el.innerHTML='<div class="quiz-header"><h2>'+T('quizTitle')+'</h2><p>'+T('quizSub')+'</p></div>'+fHTML+'<div class="progress-bar"><div class="progress-fill" style="width:'+prog+'%"></div></div><div style="font-size:12px;color:var(--text3);margin-bottom:12px;">'+(idx+1)+' / '+questions.length+' · Score: '+score+'</div><div class="q-card"><div class="q-article">'+q.article+'</div><div class="q-text">'+q.q+'</div><div class="options" id="opts">'+q.opts.map(function(o,i){return '<button class="opt" onclick="answerQuiz('+i+')">'+o+'</button>';}).join('')+'</div><div class="q-explain" id="qexplain">'+q.explain+'</div></div><div class="quiz-nav"><span></span><button class="btn-next" id="btnNext" onclick="nextQuiz()">'+(idx+1<questions.length?T('nextQ'):T('seeResult'))+'</button></div>';}
+function setQF(f){qState={idx:0,score:0,answered:false,questions:getQs(f),tf:f,langSet:lang};renderQuiz();}
+function answerQuiz(c){if(qState.answered)return;qState.answered=true;var q=qState.questions[qState.idx];document.querySelectorAll('.opt').forEach(function(o,i){o.disabled=true;if(i===q.ans)o.classList.add('correct');else if(i===c)o.classList.add('wrong');});if(c===q.ans)qState.score++;document.getElementById('qexplain').classList.add('show');document.getElementById('btnNext').classList.add('show');}
+function nextQuiz(){qState.idx++;qState.answered=false;renderQuiz();}
+function restartQuiz(){qState={idx:0,score:0,answered:false,questions:getQs(qState.tf),tf:qState.tf,langSet:lang};renderQuiz();}
 
-function scrollDown() { const c = document.getElementById('chat'); c.scrollTop = c.scrollHeight; }
-
-function addMsg(role, html) {
-  const chat = document.getElementById('chat');
-  const wrap = document.createElement('div');
-  wrap.className = `msg ${role}`;
-  wrap.innerHTML = `<div class="avatar ${role === 'user' ? 'me' : 'ai'}">${role === 'user' ? 'Me' : 'HY'}</div><div class="bubble">${html}</div>`;
-  chat.appendChild(wrap);
-  scrollDown();
-}
-
-function showTyping() {
-  const chat = document.getElementById('chat');
-  const wrap = document.createElement('div');
-  wrap.className = 'msg ai'; wrap.id = 'typing';
-  wrap.innerHTML = `<div class="avatar ai">HY</div><div class="bubble"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
-  chat.appendChild(wrap); scrollDown();
-}
-function removeTyping() { const t = document.getElementById('typing'); if (t) t.remove(); }
-function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
-
-async function send() {
-  if (busy) return;
-  const q = inputEl.value.trim();
-  if (!q) return;
-  inputEl.value = ''; inputEl.style.height = 'auto';
-  busy = true; document.getElementById('sendBtn').disabled = true;
-  addMsg('user', esc(q));
-  history.push({ role: 'user', content: q });
-  showTyping();
-
-  if (!isOnline) {
-    await new Promise(r => setTimeout(r, 600));
-    removeTyping();
-    const ans = getOfflineAnswer(q);
-    history.push({ role: 'assistant', content: ans });
-    addMsg('ai', `<div class="badge">📶 ${T('offlineNote').split('.')[0]}</div>${esc(ans)}<br>${waButton(ans, q)}`);
-    busy = false; document.getElementById('sendBtn').disabled = false; inputEl.focus();
-    return;
-  }
-
-  const systemPrompt = `You are Haki Yetu, a warm civic education assistant for Kenya. Respond in ${lang === 'sw' ? 'Swahili' : 'English'}.
-- Explain rights under the Constitution of Kenya 2010 clearly and accessibly
-- Reference specific articles where relevant (e.g. Article 49 for arrest)
-- Keep responses to 3-5 sentences, practical and empowering
-- Mention bodies like IEBC, KNCHR, NLC where relevant
-- Topic focus: ${topicContexts[topic] || topicContexts.general}
-- End with one short empowering statement
-- Educational information only, not legal advice`;
-
-  try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history, topic, lang })
-    });
-    const data = await res.json();
-    removeTyping();
-    if (data.error) {
-      addMsg('ai', `<span class="err">${T('apiError')}</span>`);
-    } else {
-      history.push({ role: 'assistant', content: data.content });
-      addMsg('ai', `<div class="badge">Kenya Constitution 2010</div>${esc(data.content)}<br>${waButton(data.content, q)}`);
-    }
-  } catch {
-    removeTyping();
-    addMsg('ai', `<span class="err">${T('connError')}</span>`);
-  }
-  busy = false; document.getElementById('sendBtn').disabled = false; inputEl.focus();
-}
-
-// ═══════════════════════════════════════════════
-// QUIZ DATA
-// ═══════════════════════════════════════════════
-const QUIZ = {
-  en: [
-    { q: 'Under which article of the Constitution do you have the right to remain silent when arrested?', article: 'Article 49', opts: ['Article 25', 'Article 49', 'Article 33', 'Article 60'], ans: 1, explain: 'Article 49 covers arrest rights, including the right to remain silent and not be compelled to make a confession.' },
-    { q: 'How long can police hold you before bringing you to court?', article: 'Article 49(1)(f)', opts: ['12 hours', '24 hours (or 36 if far from court)', '48 hours', '72 hours'], ans: 1, explain: 'You must appear before a court within 24 hours of arrest, or 36 hours if there is no court nearby.' },
-    { q: 'What is the minimum age to vote in Kenya?', article: 'Article 38', opts: ['16 years', '21 years', '18 years', '25 years'], ans: 2, explain: 'Article 38 grants every citizen who is 18 years or older the right to vote in any election or referendum.' },
-    { q: 'Which body manages elections in Kenya?', article: 'Article 88', opts: ['National Assembly', 'IEBC', 'Supreme Court', 'KNCHR'], ans: 1, explain: 'The Independent Electoral and Boundaries Commission (IEBC) manages elections, voter registration, and boundaries.' },
-    { q: 'Under the two-thirds gender rule, what applies to appointed bodies?', article: 'Article 27', opts: ['Half must be women', 'No more than two-thirds of the same gender', 'All must be men', 'No rule applies'], ans: 1, explain: 'Article 27 requires that no more than two-thirds of members of elective or appointed bodies should be of the same gender.' },
-    { q: 'Which article protects your right to own property in Kenya?', article: 'Article 40', opts: ['Article 26', 'Article 33', 'Article 40', 'Article 53'], ans: 2, explain: 'Article 40 protects every person\'s right to acquire and own property, and prevents arbitrary deprivation of property.' },
-    { q: 'Every child in Kenya has the right to free basic education under which article?', article: 'Article 53', opts: ['Article 43', 'Article 53', 'Article 60', 'Article 35'], ans: 1, explain: 'Article 53 guarantees every child the right to free and compulsory basic education.' },
-    { q: 'If police want to enter and search your home, what must they normally have?', article: 'Article 31', opts: ['Permission from a neighbour', 'A warrant issued by a court', 'Approval from the Chief', 'Nothing — they can enter freely'], ans: 1, explain: 'Article 31 protects the right to privacy. Police generally need a search warrant from a court to enter your home.' },
-  ],
-  sw: [
-    { q: 'Chini ya ibara gani ya Katiba una haki ya kukaa kimya unapokamatwa?', article: 'Ibara 49', opts: ['Ibara 25', 'Ibara 49', 'Ibara 33', 'Ibara 60'], ans: 1, explain: 'Ibara ya 49 inashughulikia haki za wakati wa kukamatwa, ikiwemo haki ya kukaa kimya na kutokubaliishwa kukiri.' },
-    { q: 'Polisi wanaweza kukushikilia kwa muda gani kabla ya kukupeleka mahakamani?', article: 'Ibara 49(1)(f)', opts: ['Masaa 12', 'Masaa 24 (au 36 kama mahakama iko mbali)', 'Masaa 48', 'Masaa 72'], ans: 1, explain: 'Lazima uonekane mahakamani ndani ya masaa 24 ya kukamatwa, au masaa 36 kama hakuna mahakama karibu.' },
-    { q: 'Umri wa chini wa kupiga kura Kenya ni miaka mingapi?', article: 'Ibara 38', opts: ['Miaka 16', 'Miaka 21', 'Miaka 18', 'Miaka 25'], ans: 2, explain: 'Ibara ya 38 inampa kila raia aliye na miaka 18 au zaidi haki ya kupiga kura katika uchaguzi wowote.' },
-    { q: 'Ni chombo gani kinachosimamia uchaguzi Kenya?', article: 'Ibara 88', opts: ['Bunge la Taifa', 'IEBC', 'Mahakama Kuu', 'KNCHR'], ans: 1, explain: 'Tume Huru ya Uchaguzi na Mipaka (IEBC) inasimamia uchaguzi, usajili wa wapiga kura, na mipaka.' },
-    { q: 'Kila mtoto Kenya ana haki ya elimu ya msingi bure chini ya ibara gani?', article: 'Ibara 53', opts: ['Ibara 43', 'Ibara 53', 'Ibara 60', 'Ibara 35'], ans: 1, explain: 'Ibara ya 53 inahakikishia kila mtoto haki ya elimu ya msingi bure na ya lazima.' },
-  ]
-};
-
-let quizState = { idx: 0, score: 0, answered: false, questions: [] };
-
-function renderQuiz() {
-  const qs = QUIZ[lang] || QUIZ.en;
-  if (quizState.questions.length === 0 || quizState.questions !== qs) {
-    quizState = { idx: 0, score: 0, answered: false, questions: qs };
-  }
-  const el = document.getElementById('quizContent');
-  const { idx, score, questions } = quizState;
-
-  if (idx >= questions.length) {
-    const pct = Math.round((score / questions.length) * 100);
-    const emoji = pct >= 80 ? '🏆' : pct >= 50 ? '👍' : '📚';
-    el.innerHTML = `<div class="quiz-result">
-      <div class="big">${emoji}</div>
-      <h3>${T('quizDone')}</h3>
-      <p style="font-size:24px;font-weight:500;margin:8px 0;">${score}/${questions.length}</p>
-      <p>${pct}% — ${pct>=80?'Excellent! You know your rights well.':pct>=50?'Good effort! Keep learning.':'Keep studying — knowledge is power!'}</p>
-      <button class="btn-restart" onclick="restartQuiz()">${T('quizRestart')}</button>
-    </div>`;
-    return;
-  }
-
-  const q = questions[idx];
-  const prog = ((idx) / questions.length * 100).toFixed(0);
-  el.innerHTML = `
-    <div class="quiz-header">
-      <h2>${T('quizTitle')}</h2>
-      <p>${T('quizSub')}</p>
-    </div>
-    <div class="progress-bar"><div class="progress-fill" style="width:${prog}%"></div></div>
-    <div style="font-size:12px;color:var(--gray-3);margin-bottom:12px;">${idx+1} / ${questions.length} · ${T('quiz-score') || 'Score'}: ${score}</div>
-    <div class="q-card">
-      <div class="q-article">${q.article}</div>
-      <div class="q-text">${q.q}</div>
-      <div class="options" id="opts">
-        ${q.opts.map((o,i) => `<button class="opt" onclick="answerQuiz(${i})">${o}</button>`).join('')}
-      </div>
-      <div class="q-explain" id="qexplain">${q.explain}</div>
-    </div>
-    <div class="quiz-nav">
-      <span class="quiz-score"></span>
-      <button class="btn-next" id="btnNext" onclick="nextQuiz()">${idx+1 < questions.length ? T('nextQ') : T('seeResult')}</button>
-    </div>`;
-}
-
-function answerQuiz(chosen) {
-  if (quizState.answered) return;
-  quizState.answered = true;
-  const q = quizState.questions[quizState.idx];
-  const opts = document.querySelectorAll('.opt');
-  opts.forEach((o, i) => {
-    o.disabled = true;
-    if (i === q.ans) o.classList.add('correct');
-    else if (i === chosen && chosen !== q.ans) o.classList.add('wrong');
-  });
-  if (chosen === q.ans) quizState.score++;
-  document.getElementById('qexplain').classList.add('show');
-  document.getElementById('btnNext').classList.add('show');
-}
-
-function nextQuiz() {
-  quizState.idx++;
-  quizState.answered = false;
-  renderQuiz();
-}
-
-function restartQuiz() {
-  quizState = { idx: 0, score: 0, answered: false, questions: QUIZ[lang] || QUIZ.en };
-  renderQuiz();
-}
-
-// ═══════════════════════════════════════════════
 // SCENARIOS
-// ═══════════════════════════════════════════════
-const SCENARIOS = {
-  en: [
-    {
-      icon: '🚔', tag: 'Police & Arrest', title: 'A police officer stops you on the road',
-      preview: 'You are walking and an officer demands your ID without explanation.',
-      scene: 'You are walking in your neighbourhood when a police officer stops you and demands your ID, phone, and bag. They say they are "just checking." You feel scared and unsure of what to do.',
-      rights: [
-        { title: 'Ask for a reason', text: 'Under <strong>Article 49</strong>, you have the right to know why you are being stopped or detained. Politely ask: "Officer, why are you stopping me?"' },
-        { title: 'You may show ID', text: 'You are not legally required to hand over your phone or bag without a warrant. Show your national ID if asked — that is reasonable.' },
-        { title: 'Right to remain silent', text: 'You do not have to answer questions that may incriminate you. Say: "I am exercising my right to remain silent."' },
-        { title: 'Do not resist physically', text: 'Even if you believe the stop is unlawful, do not physically resist. Note the officer\'s badge number and report later to <strong>IPOA</strong> (Independent Policing Oversight Authority).' },
-      ],
-      warning: '⚠ If you are arrested, you must be taken to court within 24 hours. Demand this right clearly and calmly.',
-      askQ: 'What are my rights when a police officer stops me on the road?'
-    },
-    {
-      icon: '🏥', tag: 'Healthcare', title: 'Hospital refuses to treat you without payment',
-      preview: 'You arrive at a public hospital in an emergency and are asked to pay first.',
-      scene: 'You rush to a public hospital after an accident. The receptionist says you cannot be seen by a doctor until you pay a deposit of Ksh 5,000. You have no money on you.',
-      rights: [
-        { title: 'Right to emergency care', text: 'Under <strong>Article 43</strong>, every person has the right to health. Public hospitals must provide emergency treatment regardless of ability to pay.' },
-        { title: 'Demand to see a doctor', text: 'Say clearly: "I need emergency treatment. Denying me care is a violation of my constitutional rights under Article 43."' },
-        { title: 'Escalate to management', text: 'Ask to speak to the hospital superintendent or medical officer on duty. They have authority to override the receptionist.' },
-        { title: 'Report the violation', text: 'Report to the <strong>Kenya National Commission on Human Rights (KNCHR)</strong> at 0800 720 627 or the <strong>Ministry of Health</strong>.' },
-      ],
-      warning: '⚠ No public hospital can legally deny you emergency care due to inability to pay. This is a constitutional right.',
-      askQ: 'Can a public hospital refuse to treat me if I have no money in Kenya?'
-    },
-    {
-      icon: '🗳️', tag: 'Voting', title: 'You are turned away at the polling station',
-      preview: 'An official says your name is not on the register even though you registered.',
-      scene: 'It is election day. You go to vote and present your ID, but the polling official says your name does not appear on the register and refuses to let you vote.',
-      rights: [
-        { title: 'Right to vote', text: 'Under <strong>Article 38</strong>, every registered citizen 18+ has the right to vote. Your registration is proof of this right.' },
-        { title: 'Ask for the presiding officer', text: 'Request to speak with the presiding officer (the senior official at the station). They can assist with register issues.' },
-        { title: 'Use a provisional ballot', text: 'If your name was genuinely omitted by error, you may be entitled to cast a provisional/tendered ballot. Ask about this.' },
-        { title: 'Report immediately to IEBC', text: 'Call the <strong>IEBC</strong> at 0800 724 242 (toll-free) or contact election observers from <strong>ELOG</strong> or other groups present.' },
-      ],
-      warning: '⚠ Do not leave the polling station without making a formal complaint. Your vote is a constitutional right.',
-      askQ: 'What do I do if I am turned away at a polling station in Kenya?'
-    },
-    {
-      icon: '🏠', tag: 'Land Rights', title: 'Someone claims your family land with a fake title',
-      preview: 'A stranger arrives with documents claiming they own land your family has occupied for decades.',
-      scene: 'A man arrives at your rural home with what looks like a title deed, claiming your family\'s land was sold 10 years ago. Your family has no record of any sale and has lived there for generations.',
-      rights: [
-        { title: 'Right to own property', text: 'Under <strong>Article 40</strong>, your right to property is protected. No one can take your land without a lawful and transparent process.' },
-        { title: 'Do not vacate under pressure', text: 'Do not leave your land because of verbal threats or informal demands. You have the right to remain until a court orders otherwise.' },
-        { title: 'Challenge the title at the NLC', text: 'Report to the <strong>National Land Commission (NLC)</strong> and request an investigation into the disputed title. They can investigate fraud.' },
-        { title: 'Seek legal aid', text: 'Contact <strong>Kituo Cha Sheria</strong> (legal aid) or your local legal aid clinic. Many offer free help for land disputes.' },
-      ],
-      warning: '⚠ Fraudulent land titles do exist. Never sign any documents under pressure. Get a lawyer before any negotiation.',
-      askQ: 'Someone is claiming my family land with a title deed. What are my rights in Kenya?'
-    },
-    {
-      icon: '📢', tag: 'Free Expression', title: 'Police try to stop your peaceful protest',
-      preview: 'You are part of a peaceful march and officers order you to disperse.',
-      scene: 'You and a group of citizens are holding a peaceful march in Nairobi. Police officers arrive and order everyone to disperse immediately, threatening arrest without explanation.',
-      rights: [
-        { title: 'Right to assemble peacefully', text: 'Under <strong>Article 37</strong>, every person has the right to assemble, demonstrate, picket, and petition peacefully.' },
-        { title: 'Notification, not permission', text: 'You only need to <em>notify</em> the police 3 days in advance — not get their permission. If you did this, the protest is lawful.' },
-        { title: 'Remain calm and non-violent', text: 'Do not engage in violence. Chant your rights: "We have the right to peaceful assembly under Article 37."' },
-        { title: 'Document everything', text: 'Film the interaction if safe. Share with <strong>Amnesty International Kenya</strong>, <strong>KNCHR</strong>, or human rights lawyers.' },
-      ],
-      warning: '⚠ If police use excessive force, this is a violation of Article 29 (freedom from torture and cruel treatment). Report to IPOA.',
-      askQ: 'Do I have the right to protest peacefully in Kenya and what should I do if police try to stop me?'
-    },
-    {
-      icon: '👩‍👧', tag: 'Gender Rights', title: 'Denied a job because of your gender',
-      preview: 'An employer tells you the position is "only for men" despite your qualifications.',
-      scene: 'You apply for a management job and pass all interviews. The HR manager then tells you they cannot hire you because "this role has always been done by men" and the client prefers a male contact.',
-      rights: [
-        { title: 'Right to equality', text: 'Under <strong>Article 27</strong>, every person is equal before the law. Discrimination based on gender is unconstitutional.' },
-        { title: 'Employment Act protections', text: 'The Employment Act 2007 prohibits gender discrimination in hiring. The employer has acted unlawfully.' },
-        { title: 'File a complaint', text: 'Report to the <strong>National Gender and Equality Commission (NGEC)</strong> or the <strong>Employment and Labour Relations Court</strong>.' },
-        { title: 'Document the discrimination', text: 'Keep all emails, messages, and communication from the employer as evidence. Note dates and what was said.' },
-      ],
-      warning: '⚠ Gender discrimination in employment is illegal. You may be entitled to compensation. Do not stay silent.',
-      askQ: 'I was denied a job because of my gender in Kenya. What are my rights?'
-    },
-  ],
-  sw: [
-    {
-      icon: '🚔', tag: 'Polisi & Kukamatwa', title: 'Afisa wa polisi anakusimamisha barabarani',
-      preview: 'Unatembea na afisa anadai kitambulisho chako bila maelezo.',
-      scene: 'Unatembea jirani yako wakati afisa wa polisi anakusimamisha na kudai kitambulisho, simu, na mfuko wako. Wanasema "tunachunguza tu." Unahisi hofu na hujui nini cha kufanya.',
-      rights: [
-        { title: 'Omba sababu', text: 'Chini ya <strong>Ibara 49</strong>, una haki ya kujua kwa nini unasimamishwa. Uliza kwa heshima: "Afisa, kwa nini unanisimamisha?"' },
-        { title: 'Unaweza kuonyesha kitambulisho', text: 'Huhitajika kisheria kuwasilisha simu yako au mfuko bila hati ya upekuzi. Onyesha kitambulisho chako cha kitaifa ukiombwa.' },
-        { title: 'Haki ya kukaa kimya', text: 'Huhitaji kujibu maswali yanayoweza kukusababishia madhara. Sema: "Ninatumia haki yangu ya kukaa kimya."' },
-        { title: 'Usipigane kimwili', text: 'Hata ukiamini usimamishaji ni haramu, usipigane kimwili. Kumbuka nambari ya beji ya afisa na uripoti baadaye kwa <strong>IPOA</strong>.' },
-      ],
-      warning: '⚠ Ukikamatwa, lazima upelekwe mahakamani ndani ya masaa 24. Dai haki hii wazi na kwa utulivu.',
-      askQ: 'Nina haki gani wakati afisa wa polisi ananisimamisha barabarani?'
-    },
-  ]
-};
+var SC={en:[
+{icon:'🚔',tag:'Police & Arrest',title:'A police officer stops you on the road',preview:'You are walking and an officer demands your ID without explanation.',scene:'You are walking in your neighbourhood when a police officer stops you and demands your ID, phone, and bag. They say they are "just checking."',rights:[{title:'Ask for a reason',text:'Under <strong>Article 49</strong>, you have the right to know why you are being stopped.'},{title:'You may show ID',text:'You are not required to hand over your phone or bag without a warrant. Show your national ID if asked.'},{title:'Right to remain silent',text:'Say: "I am exercising my right to remain silent under Article 49."'},{title:'Do not resist physically',text:'Note the officer\'s badge number and report later to <strong>IPOA</strong> at 0800 722 362.'}],warning:'⚠ If arrested, you must be taken to court within 24 hours. Demand this right.',askQ:'What are my rights when a police officer stops me on the road?'},
+{icon:'🏥',tag:'Healthcare',title:'Hospital refuses to treat you without payment',preview:'You arrive at a public hospital in an emergency and are asked to pay first.',scene:'You rush to a public hospital after an accident. The receptionist says you cannot be seen until you pay a deposit of Ksh 5,000. You have no money.',rights:[{title:'Right to emergency care',text:'Under <strong>Article 43</strong>, public hospitals must provide emergency treatment regardless of ability to pay.'},{title:'Demand to see a doctor',text:'Say: "I need emergency treatment. Denying me care violates Article 43."'},{title:'Escalate to management',text:'Ask to speak with the hospital superintendent who can override the receptionist.'},{title:'Report the violation',text:'Call <strong>KNCHR</strong> at 0800 720 627 (toll-free).'}],warning:'⚠ No public hospital can legally deny emergency care due to inability to pay.',askQ:'Can a public hospital refuse to treat me if I have no money in Kenya?'},
+{icon:'🗳️',tag:'Voting',title:'You are turned away at the polling station',preview:'An official says your name is not on the register.',scene:'It is election day. You present your ID but the official says your name is not on the register and refuses to let you vote.',rights:[{title:'Right to vote',text:'Under <strong>Article 38</strong>, every registered citizen 18+ has the right to vote.'},{title:'Ask for the presiding officer',text:'Request to speak with the senior official at the station.'},{title:'Use a provisional ballot',text:'If your name was omitted by error, you may cast a provisional ballot. Ask about this.'},{title:'Report to IEBC',text:'Call <strong>IEBC</strong> at 0800 724 242 (toll-free).'}],warning:'⚠ Do not leave the polling station without making a formal complaint.',askQ:'What do I do if I am turned away at a polling station in Kenya?'},
+{icon:'🏠',tag:'Land Rights',title:'Someone claims your family land with a fake title',preview:'A stranger arrives with documents claiming they own your family land.',scene:'A man arrives with a title deed claiming your family\'s land was sold 10 years ago. Your family has no record of any sale.',rights:[{title:'Right to own property',text:'Under <strong>Article 40</strong>, no one can take your land without a lawful process.'},{title:'Do not vacate under pressure',text:'Do not leave because of verbal threats. Stay until a court orders otherwise.'},{title:'Report to NLC',text:'Contact the <strong>National Land Commission</strong> to investigate the disputed title.'},{title:'Get free legal aid',text:'Call <strong>Kituo Cha Sheria</strong> at 0800 720 434 (toll-free).'}],warning:'⚠ Never sign any documents under pressure. Get a lawyer first.',askQ:'Someone is claiming my family land with a title deed. What are my rights?'},
+{icon:'📢',tag:'Free Expression',title:'Police try to stop your peaceful protest',preview:'You are part of a peaceful march and officers order you to disperse.',scene:'You and citizens are holding a peaceful march. Police order everyone to disperse immediately, threatening arrest.',rights:[{title:'Right to assemble peacefully',text:'Under <strong>Article 37</strong>, every person has the right to demonstrate peacefully.'},{title:'Notification, not permission',text:'You only need to notify police 3 days in advance — not get permission.'},{title:'Remain calm',text:'Do not engage in violence. State: "We have the right to peaceful assembly under Article 37."'},{title:'Document everything',text:'Film the interaction if safe. Share with <strong>KNCHR</strong>.'}],warning:'⚠ If police use excessive force, report to IPOA — this violates Article 29.',askQ:'Do I have the right to protest peacefully in Kenya?'},
+{icon:'👩',tag:'Gender Rights',title:'Denied a job because of your gender',preview:'An employer tells you the position is "only for men" despite your qualifications.',scene:'You apply for a management job and pass all interviews. The HR manager says they cannot hire you because "this role has always been done by men."',rights:[{title:'Right to equality',text:'Under <strong>Article 27</strong>, gender discrimination is unconstitutional.'},{title:'Employment Act protections',text:'The Employment Act 2007 prohibits gender discrimination in hiring.'},{title:'File a complaint',text:'Report to the <strong>National Gender and Equality Commission (NGEC)</strong>.'},{title:'Document the discrimination',text:'Keep all emails and communication as evidence.'}],warning:'⚠ Gender discrimination is illegal. You may be entitled to compensation.',askQ:'I was denied a job because of my gender in Kenya. What are my rights?'}
+],sw:[
+{icon:'🚔',tag:'Polisi & Kukamatwa',title:'Afisa wa polisi anakusimamisha barabarani',preview:'Unatembea na afisa anadai kitambulisho chako bila maelezo.',scene:'Unatembea jirani yako wakati afisa wa polisi anakusimamisha na kudai kitambulisho, simu, na mfuko wako.',rights:[{title:'Omba sababu',text:'Chini ya <strong>Ibara 49</strong>, una haki ya kujua kwa nini unasimamishwa.'},{title:'Onyesha kitambulisho',text:'Huhitajika kuwasilisha simu au mfuko bila hati ya upekuzi.'},{title:'Haki ya kukaa kimya',text:'Sema: "Ninatumia haki yangu ya kukaa kimya."'},{title:'Usipigane kimwili',text:'Kumbuka nambari ya beji na uripoti kwa <strong>IPOA</strong>: 0800 722 362.'}],warning:'⚠ Ukikamatwa, lazima upelekwe mahakamani ndani ya masaa 24.',askQ:'Nina haki gani wakati afisa wa polisi ananisimamisha barabarani?'}
+]};
+var curSc=null;
+function renderScenarios(){var el=document.getElementById('scenarioContent'),sc=SC[lang]||SC.en;el.innerHTML='<div class="scenario-header"><h2>'+T('scenarioTitle')+'</h2><p>'+T('scenarioSub')+'</p></div><div class="scenario-grid" id="scenarioGrid">'+sc.map(function(s,i){return '<div class="s-card" onclick="openSc('+i+')"><div class="s-card-top"><div class="s-icon">'+s.icon+'</div><div class="s-title">'+s.title+'</div><div class="s-tag">'+s.tag+'</div></div><div class="s-card-bottom">'+s.preview+'</div></div>';}).join('')+'</div><div class="s-detail" id="scDetail"></div>';}
+function openSc(idx){var sc=SC[lang]||SC.en,s=sc[idx];curSc=s;document.getElementById('scenarioGrid').style.display='none';var d=document.getElementById('scDetail');d.classList.add('open');var waMsg=encodeURIComponent('🌿 Haki Yetu\n\n*'+s.title+'*\n\n'+s.rights.map(function(r,i){return (i+1)+'. '+r.title;}).join('\n')+'\n\n'+s.warning);d.innerHTML='<button class="s-detail-back" onclick="closeSc()">← '+T('backBtn')+'</button><div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;"><span style="font-size:28px;">'+s.icon+'</span><div><div style="font-size:11px;color:var(--text3);">'+s.tag+'</div><h2 style="font-family:var(--font-serif);font-size:18px;font-weight:400;">'+s.title+'</h2></div></div><div class="s-scene"><strong>📖 The situation:</strong><br><br>'+s.scene+'</div><div style="font-size:12px;font-weight:500;color:var(--text3);margin-bottom:8px;text-transform:uppercase;">Your Rights</div><div class="s-rights">'+s.rights.map(function(r,i){return '<div class="s-right"><div class="s-right-num">'+(i+1)+'</div><div class="s-right-text"><strong>'+r.title+':</strong> '+r.text+'</div></div>';}).join('')+'</div><div class="s-warning">'+s.warning+'</div><button class="s-ask-btn" onclick="askAboutSc()">'+T('askAI')+' ↗</button><a class="wa-btn" href="https://wa.me/?text='+waMsg+'" target="_blank" rel="noopener">'+waSVG()+T('waShare')+'</a>';}
+function closeSc(){document.getElementById('scenarioGrid').style.display='grid';var d=document.getElementById('scDetail');d.classList.remove('open');d.innerHTML='';curSc=null;}
+function askAboutSc(){if(!curSc)return;setMode('chat');inputEl.value=curSc.askQ;send();}
 
-let currentScenario = null;
+// DIRECTORY
+var DIR={national:[{name:'Kenya National Commission on Human Rights',abbr:'KNCHR',desc:'Investigates human rights violations. Free complaints hotline.',phone:'0800 720 627',email:'haki@knchr.org',web:'knchr.org',topic:'Human rights violations, police abuse, discrimination'},{name:'Independent Policing Oversight Authority',abbr:'IPOA',desc:'Handles complaints against police officers.',phone:'0800 722 362',email:'complaints@ipoa.go.ke',web:'ipoa.go.ke',topic:'Police brutality, unlawful arrest, misconduct'},{name:'National Land Commission',abbr:'NLC',desc:'Land disputes, historical injustices, compulsory acquisition.',phone:'020 271 2870',email:'info@nlc.go.ke',web:'nlc.go.ke',topic:'Land disputes, evictions, title deeds'},{name:'Commission on Administrative Justice',abbr:'Ombudsman',desc:'Complaints about public officers and government services.',phone:'020 222 1359',email:'info@ombudsman.go.ke',web:'ombudsman.go.ke',topic:'Government maladministration, corruption'},{name:'National Gender & Equality Commission',abbr:'NGEC',desc:'Gender discrimination and equality violations.',phone:'020 271 0056',email:'ngec@ngeckenya.org',web:'ngeckenya.org',topic:'Gender discrimination, sexual harassment, equality'},{name:'Kituo Cha Sheria',abbr:'Legal Aid',desc:'Free legal aid for low-income Kenyans.',phone:'0800 720 434',email:'mail@kituochasheria.or.ke',web:'kituochasheria.or.ke',topic:'All legal matters, prisoners, refugees, land, labour'},{name:'Federation of Women Lawyers',abbr:'FIDA Kenya',desc:'Free legal aid for women and children.',phone:'020 271 7026',email:'fida@fidakenya.org',web:'fidakenya.org',topic:"Women's rights, domestic violence, custody, inheritance"},{name:'Law Society of Kenya',abbr:'LSK',desc:'Lawyer referrals and complaints about advocates.',phone:'020 271 3765',email:'lsk@lsk.or.ke',web:'lsk.or.ke',topic:'Finding a lawyer, advocate complaints'},{name:'Ethics & Anti-Corruption Commission',abbr:'EACC',desc:'Report corruption and bribery by public officials.',phone:'0800 720 601',email:'eacc@integrity.go.ke',web:'eacc.go.ke',topic:'Corruption, bribery, embezzlement'},{name:'Office of the Director of Public Prosecutions',abbr:'ODPP',desc:'Oversees criminal prosecutions.',phone:'020 271 5791',email:'info@odpp.go.ke',web:'odpp.go.ke',topic:'Criminal matters, prosecution, appeals'}],county:[{name:'Nairobi Legal Aid Centre',county:'Nairobi',desc:'Walk-in legal aid. Milimani Law Courts area.',phone:'020 271 2871',topic:'All legal matters'},{name:'Mombasa Law Courts Legal Aid',county:'Mombasa',desc:'Court-based legal aid for Coast region.',phone:'041 231 1395',topic:'Criminal, family, land'},{name:'Kisumu Legal Aid Clinic',county:'Kisumu',desc:'Serves Nyanza region.',phone:'057 202 1234',topic:"Women's rights, land, family"},{name:'Nakuru Bar Association Aid',county:'Nakuru',desc:'Pro bono legal services, Rift Valley.',phone:'051 221 3456',topic:'Land, criminal, civil'},{name:'Eldoret Community Legal Aid',county:'Uasin Gishu',desc:'North Rift legal services.',phone:'053 206 1234',topic:'Land, labour, family'},{name:'Nyeri Legal Aid Desk',county:'Nyeri',desc:'Central Kenya. Mount Kenya region.',phone:'061 203 2345',topic:'Land, succession, criminal'},{name:'Garissa Legal Aid Centre',county:'Garissa',desc:'NFD region. Refugee and land matters.',phone:'046 202 1234',topic:'Land, refugees, family'},{name:'Kakamega Legal Aid Clinic',county:'Kakamega',desc:'Western Kenya. Labour and land.',phone:'056 203 1234',topic:'Labour, land, family'},{name:'Machakos Legal Aid Desk',county:'Machakos',desc:'Ukambani region.',phone:'044 202 1234',topic:'Land, succession, civil'},{name:'Kisii Legal Aid Centre',county:'Kisii',desc:'South Nyanza and Kisii region.',phone:'058 203 1234',topic:'Land, family, criminal'},{name:'Malindi Legal Aid Clinic',county:'Kilifi',desc:'Coastal strip — land and fishing rights.',phone:'042 213 1234',topic:'Land, fishing rights, family'},{name:'Thika Legal Aid Desk',county:'Kiambu',desc:'Greater Nairobi metro area.',phone:'067 221 2345',topic:'Labour, land, criminal'}]};
+function filterDirectory(q){var query=(q||'').toLowerCase(),wi='<svg viewBox="0 0 24 24" fill="#25D366" width="12" height="12"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>';
+var nat=DIR.national.filter(function(d){return !query||d.name.toLowerCase().includes(query)||d.abbr.toLowerCase().includes(query)||d.topic.toLowerCase().includes(query)||d.desc.toLowerCase().includes(query);});
+var cty=DIR.county.filter(function(d){return !query||d.name.toLowerCase().includes(query)||d.county.toLowerCase().includes(query)||d.topic.toLowerCase().includes(query)||d.desc.toLowerCase().includes(query);});
+var html='';if(!nat.length&&!cty.length)html='<div class="dir-empty">No results found.</div>';
+if(nat.length){html+='<div class="dir-section"><div class="dir-section-title">'+T('dirNational')+' ('+nat.length+')</div><div class="dir-grid">';nat.forEach(function(d){var wt=encodeURIComponent('🌿 Haki Yetu\n\n*'+d.name+' ('+d.abbr+')*\n'+d.desc+'\n\n📞 '+(d.phone||'')+'\n🌐 '+(d.web||'')+'\n\nTopics: '+d.topic);html+='<div class="dir-card national-card"><div class="dir-card-name">'+d.name+'</div><div class="dir-card-org">'+d.abbr+'</div><div class="dir-card-detail">'+d.desc+'<br>';if(d.phone)html+='📞 <a href="tel:'+d.phone.replace(/\s/g,'')+'">' +d.phone+'</a>'+(d.phone.startsWith('0800')?' <span style="font-size:10px;color:var(--text4)">(toll-free)</span>':'')+'<br>';if(d.email)html+='✉ <a href="mailto:'+d.email+'">'+d.email+'</a><br>';if(d.web)html+='🌐 <a href="https://'+d.web+'" target="_blank">'+d.web+'</a>';html+='<br><span style="font-size:10px;color:var(--text4)">Topics: '+d.topic+'</span></div><a class="dir-wa" href="https://wa.me/?text='+wt+'" target="_blank" rel="noopener">'+wi+' Share</a></div>';});html+='</div></div>';}
+if(cty.length){html+='<div class="dir-section"><div class="dir-section-title">'+T('dirCounty')+' ('+cty.length+')</div><div class="dir-grid">';cty.forEach(function(d){var wt=encodeURIComponent('🌿 Haki Yetu\n\nLegal aid near you:\n\n*'+d.name+'*\n'+d.county+' County\n\n'+d.desc+'\n\n📞 '+(d.phone||'')+'\n\nTopics: '+d.topic);html+='<div class="dir-card"><div class="dir-card-name">'+d.name+'</div><div class="dir-card-org">'+d.county+' County</div><div class="dir-card-detail">'+d.desc+'<br>';if(d.phone)html+='📞 <a href="tel:'+d.phone.replace(/\s/g,'')+'">' +d.phone+'</a><br>';html+='<span style="font-size:10px;color:var(--text4)">Topics: '+d.topic+'</span></div><a class="dir-wa" href="https://wa.me/?text='+wt+'" target="_blank" rel="noopener">'+wi+' Share</a></div>';});html+='</div></div>';}
+document.getElementById('dirResults').innerHTML=html;}
 
-function renderScenarios() {
-  const el = document.getElementById('scenarioContent');
-  const scenarios = SCENARIOS[lang] || SCENARIOS.en;
-  el.innerHTML = `
-    <div class="scenario-header">
-      <h2>${T('scenarioTitle')}</h2>
-      <p>${T('scenarioSub')}</p>
-    </div>
-    <div class="scenario-grid" id="scenarioGrid">
-      ${scenarios.map((s,i) => `
-        <div class="s-card" onclick="openScenario(${i})">
-          <div class="s-card-top">
-            <div class="s-icon">${s.icon}</div>
-            <div class="s-title">${s.title}</div>
-            <div class="s-tag">${s.tag}</div>
-          </div>
-          <div class="s-card-bottom">${s.preview}</div>
-        </div>`).join('')}
-    </div>
-    <div class="s-detail" id="scenarioDetail"></div>`;
-}
+// CONSTITUTION SEARCH
+var CS=[{article:'Article 1',title:'Sovereignty of the People',text:'All sovereign power belongs to the people of Kenya and shall be exercised only in accordance with the Constitution.',keywords:['sovereignty','people','power']},{article:'Article 10',title:'National Values and Principles',text:'National values include patriotism, national unity, rule of law, democracy, human dignity, equity, social justice, equality, human rights, non-discrimination, good governance, integrity, transparency, and sustainable development.',keywords:['values','principles','unity','democracy','integrity','transparency']},{article:'Article 25',title:'Non-Derogable Rights',text:'The following rights cannot be limited even in a state of emergency: freedom from torture and cruel treatment; freedom from slavery; the right to a fair trial; and the right to an order of habeas corpus.',keywords:['torture','slavery','fair trial','non-derogable','emergency']},{article:'Article 26',title:'Right to Life',text:'Every person has the right to life. The life of every person begins at conception. A person shall not be deprived of life intentionally except as authorised by the Constitution.',keywords:['life','right to life','death']},{article:'Article 27',title:'Equality and Freedom from Discrimination',text:'Every person is equal before the law. No person shall be discriminated against on grounds of race, sex, pregnancy, marital status, health status, ethnic origin, colour, age, disability, religion, conscience, belief, culture, dress, language or birth.',keywords:['equality','discrimination','race','gender','sex','disability','age']},{article:'Article 28',title:'Human Dignity',text:'Every person has inherent dignity and the right to have that dignity respected and protected.',keywords:['dignity','respect','human dignity']},{article:'Article 29',title:'Freedom and Security of Person',text:'Every person has the right not to be deprived of freedom arbitrarily, not to be detained without trial, freedom from torture, freedom from violence from public or private sources.',keywords:['freedom','security','torture','detention','violence']},{article:'Article 31',title:'Privacy',text:'Every person has the right to privacy — their home shall not be searched, possessions seized, or communications infringed without justification.',keywords:['privacy','search','home','communications','property']},{article:'Article 33',title:'Freedom of Expression',text:'Every person has the right to freedom of expression including freedom to seek, receive or impart information, artistic creativity, and academic freedom and freedom of scientific research.',keywords:['expression','speech','media','press','artistic','academic']},{article:'Article 34',title:'Freedom of the Media',text:'Freedom and independence of electronic, print and all other types of media is guaranteed. The state shall not interfere with or penalise the media.',keywords:['media','press','journalism','broadcasting','newspaper','television','radio']},{article:'Article 35',title:'Access to Information',text:'Every citizen has the right to access information held by the State or required for the exercise or protection of any right or fundamental freedom.',keywords:['information','access','government','state','records','documents']},{article:'Article 37',title:'Assembly, Demonstration and Petition',text:'Every person has the right, peaceably and unarmed, to assemble, demonstrate, picket, and present petitions to public authorities. Notify police 3 days before — permission is not required.',keywords:['assembly','protest','demonstration','picket','march','petition','rally']},{article:'Article 38',title:'Political Rights and Voting',text:'Every citizen aged 18+ has the right to vote by secret ballot in any election or referendum and to be a candidate for public office.',keywords:['vote','voting','election','political','party','ballot','referendum']},{article:'Article 39',title:'Freedom of Movement',text:'Every person has the right to move freely in Kenya, to leave Kenya, to enter Kenya, and to reside anywhere in the country.',keywords:['movement','travel','reside','residence','leave','enter']},{article:'Article 40',title:'Protection of Right to Property',text:'Every person has the right to acquire and own property. The State shall not deprive a person of property arbitrarily. Compulsory acquisition requires prompt, just and fair compensation.',keywords:['property','land','own','acquire','possession','compulsory','compensation']},{article:'Article 43',title:'Economic and Social Rights',text:'Every person has the right to healthcare; adequate housing; food of acceptable quality; clean and safe water; social security; and education.',keywords:['health','healthcare','hospital','housing','food','water','education','social security']},{article:'Article 47',title:'Fair Administrative Action',text:'Every person has the right to administrative action that is expeditious, efficient, lawful, reasonable and procedurally fair — with written reasons if rights are affected.',keywords:['administrative','fair','government action','procedural','reasons','public service']},{article:'Article 48',title:'Access to Justice',text:'The State shall ensure access to justice for all persons and any fee required shall be reasonable and shall not impede access to justice.',keywords:['justice','access','court','fees','legal aid']},{article:'Article 49',title:'Rights of an Arrested Person',text:'An arrested person has the right to: be informed of the reason for arrest; remain silent; communicate with a lawyer; not be compelled to confess; be brought before court within 24 hours; and be released on bond or bail on reasonable conditions.',keywords:['arrested','arrest','detention','bail','bond','lawyer','silent','24 hours','court']},{article:'Article 50',title:'Fair Hearing',text:'Every person has the right to a fair and public hearing before an independent and impartial tribunal. Every accused person is presumed innocent until proved guilty.',keywords:['fair hearing','trial','court','judge','innocent','presumed','accused']},{article:'Article 53',title:'Rights of Children',text:'Every child has the right to a name, nationality, parental care, nutrition, shelter, healthcare, free and compulsory basic education, and protection from abuse, neglect, and harmful cultural practices.',keywords:['child','children','education','parental','nutrition','shelter','abuse','neglect']},{article:'Article 54',title:'Rights of Persons with Disabilities',text:'A person with any disability is entitled to be treated with dignity, to access educational institutions, public places, public transport, and information in accessible formats including Sign language and Braille.',keywords:['disability','disabled','accessibility','braille','sign language','wheelchair']},{article:'Article 56',title:'Rights of Minorities and Marginalised Groups',text:'The State shall put in place affirmative action programmes to ensure minorities and marginalised groups are represented in governance and benefit from national and county development.',keywords:['minorities','marginalised','affirmative action','representation','governance']},{article:'Article 60',title:'Principles of Land Policy',text:'Land in Kenya shall be held, used and managed equitably, efficiently, productively and sustainably. Historical land injustices shall be addressed. Gender discrimination in land is prohibited.',keywords:['land policy','equitable','sustainable','land rights','community','gender']},{article:'Article 73',title:'Responsibilities of Leadership',text:'Authority assigned to a State officer is a public trust. It must be exercised for the people\'s benefit, with integrity, in accordance with the Constitution.',keywords:['leadership','public trust','state officer','accountability','responsibility']}];
+function renderCSHints(){var hints=['Article 49','Article 27','Land rights','Right to vote','Fair trial','Freedom of speech','Right to health','Children rights'];document.getElementById('csHints').innerHTML=hints.map(function(h){return '<button class="cs-hint" onclick="searchConstitution(\''+h+'\');document.getElementById(\'csSearch\').value=\''+h+'\'">'+h+'</button>';}).join('');if(!document.getElementById('csSearch').value)document.getElementById('csResults').innerHTML='<div class="cs-empty"><div class="emoji">📜</div><p>Search for any constitutional right or article above.</p></div>';}
+function searchConstitution(q){var query=(q||'').toLowerCase().trim(),results=document.getElementById('csResults');if(!query){renderCSHints();return;}var matches=CS.filter(function(c){return c.article.toLowerCase().includes(query)||c.title.toLowerCase().includes(query)||c.text.toLowerCase().includes(query)||c.keywords.some(function(k){return k.includes(query);});});if(!matches.length){results.innerHTML='<div class="cs-empty"><div class="emoji">🔍</div><p>'+T('csNoResult')+'</p></div>';return;}results.innerHTML=matches.map(function(c){var waMsg=encodeURIComponent('🌿 Haki Yetu — Kenya Constitution 2010\n\n*'+c.article+' — '+c.title+'*\n\n'+c.text);return '<div class="cs-result"><div class="cs-result-article">'+c.article+'</div><div class="cs-result-title">'+c.title+'</div><div class="cs-result-text">'+c.text+'</div><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;"><button class="rotd-ask" style="background:var(--green-dark);border-color:var(--green-dark);" onclick="ask(\'Explain '+c.article+' — '+c.title+' in simple terms with examples\')">'+T('askAbout')+' ↗</button><a class="wa-btn" href="https://wa.me/?text='+waMsg+'" target="_blank" rel="noopener">'+waSVG()+T('waShare')+'</a></div></div>';}).join('');}
 
-function openScenario(idx) {
-  const scenarios = SCENARIOS[lang] || SCENARIOS.en;
-  const s = scenarios[idx];
-  currentScenario = s;
-  document.getElementById('scenarioGrid').style.display = 'none';
-  const detail = document.getElementById('scenarioDetail');
-  detail.classList.add('open');
-  detail.innerHTML = `
-    <button class="s-detail-back" onclick="closeScenario()">← ${T('backBtn').replace('← ','')}</button>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
-      <span style="font-size:28px;">${s.icon}</span>
-      <div>
-        <div style="font-size:11px;color:var(--gray-3);">${s.tag}</div>
-        <h2 style="font-family:var(--font-serif);font-size:18px;font-weight:400;">${s.title}</h2>
-      </div>
-    </div>
-    <div class="s-scene"><strong>📖 The situation:</strong><br><br>${s.scene}</div>
-    <div style="font-size:12px;font-weight:500;color:var(--gray-3);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em;">Your Rights</div>
-    <div class="s-rights">
-      ${s.rights.map((r,i) => `<div class="s-right"><div class="s-right-num">${i+1}</div><div class="s-right-text"><strong>${r.title}:</strong> ${r.text}</div></div>`).join('')}
-    </div>
-    <div class="s-warning">${s.warning}</div>
-    <button class="s-ask-btn" onclick="askAboutScenario()">${T('askAI')} ↗</button>
-    <a class="wa-btn" style="margin-top:8px;" href="https://wa.me/?text=${encodeURIComponent('🌿 Haki Yetu — Know Your Rights\n\n*' + s.title + '*\n\n' + s.rights.map((r,i) => (i+1) + '. ' + r.title + ': ' + r.text.replace(/<[^>]+>/g,'')).join('\n') + '\n\n' + s.warning.replace(/<[^>]+>/g,''))}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#25D366" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>${T('waShare')}</a>`;
-}
+// REPORT A VIOLATION
+var VIO=[{icon:'🚔',name:'Police misconduct',desc:'Unlawful arrest, brutality, extortion',steps:[{title:'Stay calm and document',text:'Note the officer\'s badge number, name, patrol car number, time and location. Record video if safe.'},{title:'Get medical attention',text:'If injured, seek medical care and get a medical report. This is important evidence.'},{title:'Report to IPOA',text:'Call <a href="tel:0800722362">0800 722 362</a> (toll-free) or visit <a href="https://ipoa.go.ke" target="_blank">ipoa.go.ke</a>.'},{title:'Report to KNCHR',text:'Also call <a href="tel:0800720627">0800 720 627</a> (toll-free).'},{title:'Get legal aid',text:'Contact Kituo Cha Sheria at <a href="tel:0800720434">0800 720 434</a> (toll-free).'}]},{icon:'🏥',name:'Healthcare denial',desc:'Refused treatment, maternity fees, emergency denial',steps:[{title:'Document the refusal',text:'Get the name of the staff member. Note the date, time, hospital and department.'},{title:'Escalate within the hospital',text:'Ask to speak with the hospital superintendent who can override front-line staff.'},{title:'Report to KNCHR',text:'Call <a href="tel:0800720627">0800 720 627</a> (toll-free). Healthcare denial violates Article 43.'},{title:'Report to Ministry of Health',text:'Visit <a href="https://health.go.ke" target="_blank">health.go.ke</a> or contact the county health department.'},{title:'Get legal help',text:'FIDA Kenya handles health rights cases. Call <a href="tel:0202717026">020 271 7026</a>.'}]},{icon:'🏠',name:'Land rights violation',desc:'Eviction, land grabbing, fraudulent title',steps:[{title:'Do not vacate voluntarily',text:'Unless a court orders you to leave, stay on the land. Voluntary departure may weaken your claim.'},{title:'Gather evidence',text:'Collect title deed copies, receipts, photos, witness statements, and historical records.'},{title:'Report to NLC',text:'Call <a href="tel:0202712870">020 271 2870</a> or visit <a href="https://nlc.go.ke" target="_blank">nlc.go.ke</a>.'},{title:'Get free legal aid',text:'Kituo Cha Sheria specialises in land disputes. Call <a href="tel:0800720434">0800 720 434</a> (toll-free).'},{title:'File a court injunction',text:'A lawyer can get a court injunction stopping any eviction until the matter is resolved.'}]},{icon:'⚖️',name:'Discrimination',desc:'Gender, disability, ethnicity, religion',steps:[{title:'Document the discrimination',text:'Write down what happened, when, where, who was involved, and any witnesses.'},{title:'Report to KNCHR',text:'Call <a href="tel:0800720627">0800 720 627</a> (toll-free).'},{title:'Report to the relevant commission',text:'For gender: NGEC at <a href="tel:0202710056">020 271 0056</a>. For ethnic discrimination: NCIC.'},{title:'Employment discrimination',text:'File with the Employment and Labour Relations Court or the Ministry of Labour.'},{title:'Get legal help',text:'FIDA Kenya handles gender discrimination. Kituo Cha Sheria handles general discrimination.'}]},{icon:'🗳️',name:'Electoral violation',desc:'Voter intimidation, rigging, registration issues',steps:[{title:'Report immediately to IEBC',text:'Call <a href="tel:0800724242">0800 724 242</a> (toll-free) on election day.'},{title:'Contact election observers',text:'Approach ELOG or other observers present at your polling station.'},{title:'Document everything',text:'Note time, location, names, and what happened. Photos and videos are key evidence.'},{title:'File an election petition',text:'Electoral disputes can be challenged in court within 28 days of the declaration of results.'},{title:'Report criminal offences',text:'For vote bribery, report to police and the DPP at <a href="https://odpp.go.ke" target="_blank">odpp.go.ke</a>.'}]},{icon:'💼',name:'Labour rights violation',desc:'Unfair dismissal, unpaid wages, harassment',steps:[{title:'Document the violation',text:'Keep copies of your employment contract, pay slips, and all correspondences.'},{title:'Raise a formal grievance',text:'First exhaust internal grievance procedures at your workplace as required by the Employment Act.'},{title:'Report to Ministry of Labour',text:'File a complaint with the nearest Ministry of Labour office. Labour officers mediate for free.'},{title:'File with ELRC',text:'Take your case to the Employment and Labour Relations Court. You do not always need a lawyer.'},{title:'Contact your union',text:'If you are a union member, contact your union representative immediately.'}]},{icon:'🔒',name:'Corruption / Bribery',desc:'Bribery by officials, extortion, misuse of funds',steps:[{title:'Do not pay the bribe',text:'Paying a bribe is illegal. Refuse firmly and note all details of the demand.'},{title:'Document everything',text:'Note the name, position, date, time, location, what was demanded and why.'},{title:'Report to EACC',text:'Call <a href="tel:0800720601">0800 720 601</a> (toll-free) or visit <a href="https://eacc.go.ke" target="_blank">eacc.go.ke</a>.'},{title:'Report to DPP',text:'Visit <a href="https://odpp.go.ke" target="_blank">odpp.go.ke</a>.'},{title:'Use the whistleblower channel',text:'EACC has a confidential whistleblower channel. Your identity can be protected.'}]}];
+var selV=null;
+function renderReport(){var el=document.getElementById('reportContent');el.innerHTML='<div class="rv-header"><h2>'+T('rvTitle')+'</h2><p>'+T('rvSub')+'</p></div><p style="font-size:13px;font-weight:500;color:var(--text2);margin-bottom:12px;">'+T('rvChoose')+'</p><div class="rv-grid">'+VIO.map(function(v,i){return '<div class="rv-type'+(selV===i?' selected':'')+'" onclick="selVio('+i+')"><div class="rv-type-icon">'+v.icon+'</div><div class="rv-type-name">'+v.name+'</div><div class="rv-type-desc">'+v.desc+'</div></div>';}).join('')+'</div><div class="rv-steps'+(selV!==null?' show':'')+'" id="rvSteps">'+(selV!==null?rvSteps(selV):'')+'</div>';}
+function rvSteps(idx){var v=VIO[idx];return '<div style="border-top:1px solid var(--border);padding-top:1.25rem;margin-top:0.5rem;"><h3 style="font-family:var(--font-serif);font-size:18px;font-weight:400;margin-bottom:4px;">'+v.icon+' '+v.name+'</h3><p style="font-size:13px;color:var(--text3);margin-bottom:1rem;">Step-by-step guide</p>'+v.steps.map(function(s,i){return '<div class="rv-step"><div class="rv-step-num">'+(i+1)+'</div><div class="rv-step-body"><div class="rv-step-title">'+s.title+'</div><div class="rv-step-text">'+s.text+'</div></div></div>';}).join('')+'<button class="s-ask-btn" style="margin-top:1rem;" onclick="ask(\'I am experiencing '+v.name.toLowerCase()+' in Kenya. What steps should I take to protect my rights?\')">Ask AI for more help ↗</button></div>';}
+function selVio(idx){selV=idx;renderReport();setTimeout(function(){var el=document.getElementById('rvSteps');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},100);}
 
-function closeScenario() {
-  document.getElementById('scenarioGrid').style.display = 'grid';
-  const detail = document.getElementById('scenarioDetail');
-  detail.classList.remove('open');
-  detail.innerHTML = '';
-  currentScenario = null;
-}
-
-function askAboutScenario() {
-  if (!currentScenario) return;
-  setMode('chat');
-  inputEl.value = currentScenario.askQ;
-  send();
-}
-
-
-// ═══════════════════════════════════════════════
-// WHATSAPP SHARE
-// ═══════════════════════════════════════════════
-function waButton(text, question) {
-  const msg = encodeURIComponent(`🌿 *Haki Yetu — Your Rights*\n\n*Q: ${question}*\n\n${text}\n\nLearn more: https://hakiyetu.co.ke`);
-  return `<a class="wa-btn" href="https://wa.me/?text=${msg}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>${T('waShare')}</a>`;
-}
-
-// ═══════════════════════════════════════════════
-// LEGAL AID DIRECTORY DATA
-// ═══════════════════════════════════════════════
-const DIRECTORY = {
-  national: [
-    { name: 'Kenya National Commission on Human Rights', abbr: 'KNCHR', desc: 'Investigates human rights violations. Free complaints hotline.', phone: '0800 720 627', email: 'haki@knchr.org', web: 'knchr.org', topic: 'Human rights violations, police abuse, discrimination' },
-    { name: 'Independent Policing Oversight Authority', abbr: 'IPOA', desc: 'Handles complaints against police officers.', phone: '0800 722 362', email: 'complaints@ipoa.go.ke', web: 'ipoa.go.ke', topic: 'Police brutality, unlawful arrest, misconduct' },
-    { name: 'National Land Commission', abbr: 'NLC', desc: 'Land disputes, historical injustices, compulsory acquisition.', phone: '020 271 2870', email: 'info@nlc.go.ke', web: 'nlc.go.ke', topic: 'Land disputes, evictions, title deeds' },
-    { name: 'Commission on Administrative Justice', abbr: 'Ombudsman', desc: 'Complaints about public officers and government services.', phone: '020 222 1359', email: 'info@ombudsman.go.ke', web: 'ombudsman.go.ke', topic: 'Government maladministration, corruption' },
-    { name: 'National Gender & Equality Commission', abbr: 'NGEC', desc: 'Gender discrimination, equality violations.', phone: '020 271 0056', email: 'ngec@ngeckenya.org', web: 'ngeckenya.org', topic: 'Gender discrimination, sexual harassment, equality' },
-    { name: 'Kituo Cha Sheria', abbr: 'Legal Aid', desc: 'Free legal aid for low-income Kenyans. Walk-in and hotline.', phone: '0800 720 434', email: 'mail@kituochasheria.or.ke', web: 'kituochasheria.or.ke', topic: 'All legal matters, prisoners, refugees, land, labour' },
-    { name: 'Federation of Women Lawyers', abbr: 'FIDA Kenya', desc: 'Free legal aid for women and children.', phone: '020 271 7026', email: 'fida@fidakenya.org', web: 'fidakenya.org', topic: "Women's rights, domestic violence, custody, inheritance" },
-    { name: 'Law Society of Kenya', abbr: 'LSK', desc: 'Lawyer referrals and complaints about advocates.', phone: '020 271 3765', email: 'lsk@lsk.or.ke', web: 'lsk.or.ke', topic: 'Finding a lawyer, advocate complaints' },
-    { name: 'Kenya Prisons Service — Legal Aid', abbr: 'Prisons', desc: 'Legal aid for prisoners and pre-trial detainees.', phone: '020 341 0000', email: 'info@prisons.go.ke', web: 'prisons.go.ke', topic: 'Prisoners rights, bail, remand' },
-    { name: 'Ethics & Anti-Corruption Commission', abbr: 'EACC', desc: 'Report corruption and bribery by public officials.', phone: '0800 720 601', email: 'eacc@integrity.go.ke', web: 'eacc.go.ke', topic: 'Corruption, bribery, embezzlement' },
-  ],
-  county: [
-    { name: 'Nairobi Legal Aid Centre', county: 'Nairobi', desc: 'Walk-in legal aid. Milimani Law Courts area.', phone: '020 271 2871', topic: 'All legal matters' },
-    { name: 'Mombasa Law Courts Legal Aid', county: 'Mombasa', desc: 'Court-based legal aid for Coast region.', phone: '041 231 1395', topic: 'Criminal, family, land' },
-    { name: 'Kisumu Legal Aid Clinic', county: 'Kisumu', desc: 'Serves Nyanza region. FIDA affiliate.', phone: '057 202 1234', topic: "Women's rights, land, family" },
-    { name: 'Nakuru Bar Association Aid', county: 'Nakuru', desc: 'Pro bono legal services, Rift Valley region.', phone: '051 221 3456', topic: 'Land, criminal, civil' },
-    { name: 'Eldoret Community Legal Aid', county: 'Uasin Gishu', desc: 'North Rift legal services centre.', phone: '053 206 1234', topic: 'Land, labour, family' },
-    { name: 'Nyeri Legal Aid Desk', county: 'Nyeri', desc: 'Central Kenya legal aid. Mount Kenya region.', phone: '061 203 2345', topic: 'Land, succession, criminal' },
-    { name: 'Garissa Legal Aid Centre', county: 'Garissa', desc: 'NFD region. Handles refugee and land matters.', phone: '046 202 1234', topic: 'Land, refugees, family' },
-    { name: 'Kakamega Legal Aid Clinic', county: 'Kakamega', desc: 'Western Kenya. Labour and land focus.', phone: '056 203 1234', topic: 'Labour, land, family' },
-    { name: 'Machakos Legal Aid Desk', county: 'Machakos', desc: 'Ukambani region legal services.', phone: '044 202 1234', topic: 'Land, succession, civil' },
-    { name: 'Kisii Legal Aid Centre', county: 'Kisii', desc: 'South Nyanza and Kisii region.', phone: '058 203 1234', topic: 'Land, family, criminal' },
-    { name: 'Malindi Legal Aid Clinic', county: 'Kilifi', desc: 'Coastal strip — land and fishing rights.', phone: '042 213 1234', topic: 'Land, fishing rights, family' },
-    { name: 'Thika Legal Aid Desk', county: 'Kiambu', desc: 'Greater Nairobi metro area.', phone: '067 221 2345', topic: 'Labour, land, criminal' },
-  ]
-};
-
-function renderDirectory() {
-  const el = document.getElementById('directoryContent');
-  const query = (el._query || '').toLowerCase();
-  const nat = DIRECTORY.national.filter(d =>
-    !query || d.name.toLowerCase().includes(query) || d.abbr.toLowerCase().includes(query) ||
-    d.topic.toLowerCase().includes(query) || (d.desc||'').toLowerCase().includes(query)
-  );
-  const cty = DIRECTORY.county.filter(d =>
-    !query || d.name.toLowerCase().includes(query) || (d.county||'').toLowerCase().includes(query) ||
-    d.topic.toLowerCase().includes(query) || (d.desc||'').toLowerCase().includes(query)
-  );
-
-  el.innerHTML = `
-    <div class="dir-header">
-      <h2>${T('dirTitle')}</h2>
-      <p>${T('dirSub')}</p>
-    </div>
-    <input class="dir-search" id="dirSearch" dir="ltr" style="text-align:left;" placeholder="${T('dirSearch')}" value="${el._query||''}" oninput="filterDirectory(this.value)">
-
-    ${nat.length === 0 && cty.length === 0 ? `<div class="dir-empty">No results found for "${el._query}"</div>` : ''}
-
-    ${nat.length > 0 ? `
-    <div class="dir-section">
-      <div class="dir-section-title">${T('dirNational')} (${nat.length})</div>
-      <div class="dir-grid">
-        ${nat.map(d => `
-          <div class="dir-card national-card">
-            <div class="dir-card-name">${d.name}</div>
-            <div class="dir-card-org">${d.abbr}</div>
-            <div class="dir-card-detail">
-              ${d.desc}<br>
-              ${d.phone ? `📞 <a href="tel:${d.phone.replace(/\s/g,'')}">${d.phone}</a>${d.phone.startsWith('0800') ? ' <span style="font-size:10px;color:var(--gray-3)">(toll-free)</span>' : ''}<br>` : ''}
-              ${d.email ? `✉ <a href="mailto:${d.email}">${d.email}</a><br>` : ''}
-              ${d.web ? `🌐 <a href="https://${d.web}" target="_blank">${d.web}</a>` : ''}
-              <br><span style="font-size:10px;color:var(--gray-3)">Topics: ${d.topic}</span>
-            </div>
-            <a class="dir-wa" href="https://wa.me/?text=${encodeURIComponent('🌿 Haki Yetu\n\nNeed legal help?\n\n*' + d.name + ' (' + d.abbr + ')*\n' + d.desc + '\n\n📞 ' + (d.phone||'') + '\n🌐 ' + (d.web||'') + '\n\nTopics: ' + d.topic)}" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="#25D366" width="12" height="12"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
-              Share
-            </a>
-          </div>`).join('')}
-      </div>
-    </div>` : ''}
-
-    ${cty.length > 0 ? `
-    <div class="dir-section">
-      <div class="dir-section-title">${T('dirCounty')} (${cty.length})</div>
-      <div class="dir-grid">
-        ${cty.map(d => `
-          <div class="dir-card">
-            <div class="dir-card-name">${d.name}</div>
-            <div class="dir-card-org">${d.county} County</div>
-            <div class="dir-card-detail">
-              ${d.desc}<br>
-              ${d.phone ? `📞 <a href="tel:${d.phone.replace(/\s/g,'')}">${d.phone}</a><br>` : ''}
-              <span style="font-size:10px;color:var(--gray-3)">Topics: ${d.topic}</span>
-            </div>
-            <a class="dir-wa" href="https://wa.me/?text=${encodeURIComponent('🌿 Haki Yetu\n\nLegal aid near you:\n\n*' + d.name + '*\n' + d.county + ' County\n\n' + d.desc + '\n\n📞 ' + (d.phone||'') + '\n\nTopics: ' + d.topic)}" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="#25D366" width="12" height="12"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.534 5.854L0 24l6.335-1.512A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.732.979.994-3.636-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
-              Share
-            </a>
-          </div>`).join('')}
-      </div>
-    </div>` : ''}`;
-}
-
-function filterDirectory(q) {
-  const el = document.getElementById('directoryContent');
-  el._query = q;
-  renderDirectory();
-  document.getElementById('dirSearch').focus();
-}
-
-// ═══════════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════════
 applyTranslations();
+renderROTD();
 renderScenarios();
-renderDirectory();
+filterDirectory('');
+renderCSHints();
+renderReport();
 </script>
-
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/sw.js").catch(console.error);
-}
-</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(console.error);}</script>
 </body>
 </html>
